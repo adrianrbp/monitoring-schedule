@@ -1,0 +1,107 @@
+{
+  "name": "Rails API Container",
+  "dockerComposeFile": ["../docker-compose.yml"],
+  "service": "rails",
+  "shutdownAction": "none",
+  "workspaceFolder": "/workspace/backend",
+  "remoteUser": "vscode",
+  "postCreateCommand": "bundle install && yarn install",
+  "forwardPorts": [3030],
+  "features": {
+      "ghcr.io/devcontainers/features/git:1": {},
+      "ghcr.io/devcontainers/features/node:1": {
+        "version": "latest"
+      },
+      "ghcr.io/rails/devcontainer/features/postgres-client": {}
+  },
+
+	// "containerEnv": {
+	// 	"PGHOST": "postgres",
+	// 	"PGUSER": "user",
+	// 	"PGPASSWORD": "password",
+	// 	"REDIS_URL": "redis://redis/0",
+	// },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        // "terminal.integrated.shell.linux": "/bin/zsh",
+        "files.trimTrailingWhitespace": true,
+        "editor": {
+          "tabSize": 2,
+          "renderWhitespace": "all",
+          "formatOnSave": true,
+          "formatOnPaste": true,
+          "quickSuggestions": {
+            "strings": "on"
+          }
+        },
+        "[ruby]": {
+          "editor": {
+            "defaultFormatter": "Shopify.ruby-lsp",
+            "formatOnSave": true,
+            "tabSize": 2,
+            "insertSpaces": true,
+            "semanticHighlighting.enabled": true,
+            "formatOnType": true
+          }
+        },
+        "rubyLsp": {
+          "rubyVersionManager": "rbenv"
+        },
+        "sqltools.connections": [
+          {
+            "name": "Rails Development Database",
+            "driver": "PostgreSQL",
+            "previewLimit": 50,
+            "server": "postgres",
+            "port": 5432,
+            "database": "monitoring_sys_development",
+            "username": "user",
+            "password": "password"
+          },
+          {
+            "name": "Rails Test Database",
+            "driver": "PostgreSQL",
+            "previewLimit": 50,
+            "server": "postgres",
+            "port": 5432,
+            "database": "monitoring_sys_test",
+            "username": "user",
+            "password": "password"
+          }
+        ]
+      },
+      "extensions": [
+        "IBM.output-colorizer",
+        "ms-azuretools.vscode-docker",
+        // GIT
+        "waderyan.gitblame",
+        "eamodio.gitlens",
+        "mhutchie.git-graph",
+        // Ruby
+        "castwide.solargraph",
+        "shopify.ruby-lsp",
+        "kaiwood.endwise",
+        "ldrner.rspec-snippets-vscode",
+        "sorbet.sorbet-vscode-extension",
+        //Rails
+        "aki77.rails-db-schema",
+        "bung87.rails",
+        // PG
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-pg",
+        // Other
+        "ms-playwright.playwright",
+        "dbaeumer.vscode-eslint",
+        "formulahendry.auto-rename-tag",
+        "vincaslt.highlight-matching-tag",
+        "christian-kohler.path-intellisense",
+        "humao.rest-client",
+        "esbenp.prettier-vscode",
+        "streetsidesoftware.code-spell-checker",
+        "marcoroth.stimulus-lsp",
+        "VisualStudioExptTeam.vscodeintellicode"
+      ]
+    }
+  }
+}
