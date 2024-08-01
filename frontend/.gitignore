@@ -1,8 +1,12 @@
+.DS_Store
+
 # Node modules
 node_modules/
+# Log files
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
 # Build output
 dist/
@@ -22,6 +26,11 @@ e2e/test-results/
 .vscode/
 *.sublime-workspace
 *.sublime-project
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
 # Jest coverage reports
 coverage/
