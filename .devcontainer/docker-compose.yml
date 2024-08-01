@@ -44,6 +44,7 @@ services:
   playwright:
     image: mcr.microsoft.com/playwright:v1.39.0-jammy  # Use the latest version
     working_dir: /workspace/frontend
+    user: pwuser
     volumes:
       - ..:/workspace:cached
     depends_on:

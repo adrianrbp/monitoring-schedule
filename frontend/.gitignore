@@ -11,3 +11,18 @@ build/
 
 # Playwright test results
 e2e/test-results/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE and Editor directories
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Jest coverage reports
+coverage/
+*.lcov
