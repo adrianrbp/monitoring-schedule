@@ -47,11 +47,37 @@ group :development, :test do
   # [6] Tools
   # Debug
   gem "debug", platforms: %i[ mri windows ]
+  gem "faker", "~> 3.4"
+
+  ## Fixture - Models
+  gem "factory_bot_rails", "~> 6.4"
+  ## Fixture - Fake data
+  gem "pry-rails", "~> 0.3.11"
+
+  # [7] Testing
+  gem "rspec-rails", "~> 6.1"
+  # Auto-run on Modifications
+  gem "guard", "~> 2.18"
+  gem "guard-rspec", "~> 4.7"
+
+end
+
+group :test do
+  # [6] Tools
+  # Matchers/Helpers for shorten and simple tests
+  gem "shoulda-matchers", "~> 6.2"
+  # Strategies for cleaning databases
+  gem "database_cleaner", "~> 2.0"
+  gem "database_cleaner-active_record", "~> 2.2"
+  # Test Coverage
+  gem "simplecov", "~> 0.22.0", require: false
 end
 
 group :development do
   # [6] Tools
   # Pre-load app for console, rake and tests.
   # gem "spring"
+  # Errors
+  gem "better_errors", "~> 2.10"
 end
 
