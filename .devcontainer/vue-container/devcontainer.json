@@ -22,7 +22,8 @@
           "formatOnPaste": true,
           "quickSuggestions": {
             "strings": "on"
-          }
+          },
+          "defaultFormatter": "esbenp.prettier-vscode"
         },
         "tailwindCSS": {
           "includeLanguages": {
