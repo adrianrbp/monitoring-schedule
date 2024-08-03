@@ -58,30 +58,20 @@ jobs:
       #       sleep 2
       #     done
 
+  frontend-e2e:
+    runs-on: mcr.microsoft.com/playwright:v1.39.0-jammy
+    needs: [backend, frontend]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          cd frontend
+          yarn install
+
       - name: Run Playwright tests
         run: |
           cd frontend
           yarn test:e2e
-
-  # frontend-e2e:
-  #   runs-on: ubuntu-latest
-  #   needs: backend  # Ensure frontend tests run after backend tests
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
-
-  #     - name: Set up Node.js
-  #       uses: actions/setup-node@v2
-  #       with:
-  #         node-version: '16' # Change to your Node.js version
-
-  #     - name: Install dependencies
-  #       run: |
-  #         cd frontend
-  #         yarn install
-
-  #     - name: Run Jest tests
-  #       run: |
-  #         cd frontend
-  #         yarn test:e2e
 
