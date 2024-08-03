@@ -46,17 +46,17 @@ jobs:
           cd frontend
           yarn test:unit
 
-      - name: Start Rails server
-        run: |
-          cd backend
-          bin/rails server -e test &  # Run the server in the background
+      # - name: Start Rails server
+      #   run: |
+      #     cd backend
+      #     bin/rails server -e test &  # Run the server in the background
 
-      - name: Wait for Rails server to be ready
-        run: |
-          until curl -s http://localhost:3000 > /dev/null; do
-            echo "Waiting for Rails server..."
-            sleep 2
-          done
+      # - name: Wait for Rails server to be ready
+      #   run: |
+      #     until curl -s http://localhost:3000 > /dev/null; do
+      #       echo "Waiting for Rails server..."
+      #       sleep 2
+      #     done
 
       - name: Run Playwright tests
         run: |
