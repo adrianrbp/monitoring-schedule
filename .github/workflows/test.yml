@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -29,10 +29,10 @@ jobs:
     needs: backend  # Ensure frontend tests run after backend tests
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: '21'
 
@@ -58,12 +58,20 @@ jobs:
       #       sleep 2
       #     done
 
-  frontend-e2e:
-    runs-on: mcr.microsoft.com/playwright:v1.39.0-jammy
+  end-to-end:
+    name: 'Playwright Tests'
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.39.0-jammy
     needs: [backend, frontend]
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
 
       - name: Install dependencies
         run: |
@@ -72,6 +80,5 @@ jobs:
 
       - name: Run Playwright tests
         run: |
-          cd frontend
           yarn test:e2e
 
