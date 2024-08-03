@@ -1,0 +1,89 @@
+name: test
+
+on: push
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3.4'
+
+      - name: Install dependencies
+        run: |
+          cd backend
+          bundle install
+
+      - name: Run Rails tests
+        run: |
+          cd backend
+          bin/rails test
+
+  frontend:
+    runs-on: ubuntu-latest
+    needs: backend  # Ensure frontend tests run after backend tests
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '21'
+
+      - name: Install dependencies
+        run: |
+          cd frontend
+          yarn install
+
+      - name: Run Jest tests
+        run: |
+          cd frontend
+          yarn test:unit
+
+      - name: Start Rails server
+        run: |
+          cd backend
+          bin/rails server -e test &  # Run the server in the background
+
+      - name: Wait for Rails server to be ready
+        run: |
+          until curl -s http://localhost:3000 > /dev/null; do
+            echo "Waiting for Rails server..."
+            sleep 2
+          done
+
+      - name: Run Playwright tests
+        run: |
+          cd frontend
+          yarn test:e2e
+
+  # frontend-e2e:
+  #   runs-on: ubuntu-latest
+  #   needs: backend  # Ensure frontend tests run after backend tests
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
+
+  #     - name: Set up Node.js
+  #       uses: actions/setup-node@v2
+  #       with:
+  #         node-version: '16' # Change to your Node.js version
+
+  #     - name: Install dependencies
+  #       run: |
+  #         cd frontend
+  #         yarn install
+
+  #     - name: Run Jest tests
+  #       run: |
+  #         cd frontend
+  #         yarn test:e2e
+
