@@ -64,7 +64,7 @@ jobs:
     name: 'End to End Tests'
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.39.0-jammy
+      image: mcr.microsoft.com/playwright:v1.45.1-jammy
     needs: [backend, frontend]
     steps:
       - name: Checkout code
@@ -79,6 +79,9 @@ jobs:
         run: |
           cd frontend
           yarn install
+
+      # - name: Install Playwright Browsers
+      #   run: npx playwright install --with-deps
 
       - name: Run Playwright tests
         run: |
