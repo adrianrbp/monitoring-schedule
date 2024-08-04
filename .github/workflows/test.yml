@@ -4,6 +4,7 @@ on: push
 
 jobs:
   backend:
+    name: 'Rails API Tests'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -25,6 +26,7 @@ jobs:
           bin/rails test
 
   frontend:
+    name: 'Vue Frontend Tests'
     runs-on: ubuntu-latest
     needs: backend  # Ensure frontend tests run after backend tests
     steps:
@@ -59,7 +61,7 @@ jobs:
       #     done
 
   end-to-end:
-    name: 'Playwright Tests'
+    name: 'End to End Tests'
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.39.0-jammy
@@ -80,5 +82,6 @@ jobs:
 
       - name: Run Playwright tests
         run: |
+          cd frontend
           yarn test:e2e
 
