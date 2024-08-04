@@ -2,21 +2,15 @@
   "data": [
     {
       "id": 1,
-      "name": "Service A",
-      "contract_start_date": "2024-08-01T00:00:00Z",
-      "contract_end_date": "2024-12-31T23:59:59Z"
+      "name": "Service A"
     },
     {
       "id": 2,
-      "name": "Service B",
-      "contract_start_date": "2024-07-01T00:00:00Z",
-      "contract_end_date": "2024-11-30T23:59:59Z"
+      "name": "Service B"
     },
     {
       "id": 3,
-      "name": "Service C",
-      "contract_start_date": "2024-09-01T00:00:00Z",
-      "contract_end_date": "2025-01-31T23:59:59Z"
+      "name": "Service C"
     }
   ],
   "status": 200,
