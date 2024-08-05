@@ -19,7 +19,7 @@ describe("CompanyServiceSelector.vue", () => {
   it("renders the select element with available services", () => {
     const options = page.options;
     expect(options.length).toBe(3);
-    expect(options[0].text()).toBe("Select a service");
+    expect(options[0].text()).toBe("Servicio");
     expect(options[1].text()).toBe("Service A");
     expect(options[2].text()).toBe("Service B");
   });

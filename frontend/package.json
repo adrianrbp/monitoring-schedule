@@ -9,7 +9,8 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
-    "test:e2e": "start-server-and-test serve http://localhost:8080 test:playwright",
+    "test:e2e": "start-server-and-test dev http://localhost:8080 test:playwright",
+    "test:e2e:api": "start-server-and-test serve:api http://localhost:8080 test:playwright",
     "test:playwright": "playwright test"
   },
   "dependencies": {

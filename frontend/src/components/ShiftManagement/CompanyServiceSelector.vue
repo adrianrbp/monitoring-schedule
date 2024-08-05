@@ -1,10 +1,16 @@
 <template>
   <select
+    aria-label="Selecciona un Servicio"
     class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
     @change="selectService($event.target.value)"
   >
-    <option value="">Select a service</option>
-    <option v-for="service in services" :key="service.id" :value="service.id">
+    <option value="">Servicio</option>
+    <option
+      v-for="service in services"
+      :key="service.id"
+      :value="service.id"
+      :aria-label="service.name"
+    >
       {{ service.name }}
     </option>
   </select>

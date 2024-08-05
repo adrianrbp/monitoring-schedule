@@ -13,14 +13,17 @@ test.describe("Check Company Service Shifts", () => {
     await page.goto("/");
 
     // Select a service
-    await page.selectOption("select#companyService", "Service A");
+    await page.selectOption('select[aria-label="Selecciona un Servicio"]', {
+      label: "Service A",
+    });
+
     // Select a week
-    await page.selectOption("select#week", "Week 32 in 2024");
+    await page.selectOption('select[aria-label="Selecciona una Semana"]', {
+      label: "Semana 32 del 2024",
+    });
 
     // Show Subtitle
-    const weekRangeDatesTitle = await page.locator("h2");
-    await expect(weekRangeDatesTitle).toHaveText(
-      "From 04/08/2024 to 10/08/2024"
-    );
+    const dateRange = await page.locator("text=Del 05/08/2024 al 11/08/2024");
+    await expect(dateRange).toBeVisible();
   });
 });
