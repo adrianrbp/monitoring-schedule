@@ -1,7 +1,9 @@
 import CompanyServices from "@/mock/company_services.json";
 import WeeksServiceA from "@/mock/weeks_service_a.json";
 import WeeksServiceB from "@/mock/weeks_service_b.json";
-import { CompanyService, Weeks } from "@/api/types";
+import ShiftsServiceAWeek1 from "@/mock/shifts_a_w1.json";
+import ShiftsServiceBWeek1 from "@/mock/shifts_b_w1.json";
+import { CompanyService, Weeks, Shift } from "@/api/types";
 
 const isMock = process.env.VUE_APP_USE_MOCK === "true";
 
@@ -51,6 +53,38 @@ export const requestWeeks = async (serviceId: number): Promise<Weeks> => {
       console.error(error);
       console.error("Failed to fetch weeks");
       throw new Error("Failed to fetch weeks");
+    }
+  }
+};
+
+export const requestShifts = async (
+  serviceId: number,
+  weekId: string
+): Promise<Shift[]> => {
+  if (isMock) {
+    return new Promise<Shift[]>((resolve) => {
+      setTimeout(() => {
+        if (serviceId === 1) {
+          resolve(ShiftsServiceAWeek1.data);
+        } else {
+          resolve(ShiftsServiceBWeek1.data);
+        }
+      }, 500);
+    });
+  } else {
+    try {
+      const response = await fetch(
+        `/api/company_services/${serviceId}/shifts?week=${weekId}`
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const { data } = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      console.error("Failed to fetch shifts");
+      throw new Error("Failed to fetch shifts");
     }
   }
 };

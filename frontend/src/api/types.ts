@@ -38,3 +38,26 @@ export type WeeksHash = {
     end_date: string;
   };
 };
+
+export interface ShiftsResponse {
+  data: Shift[];
+  status: number;
+  statusText: string;
+}
+
+export interface Shift {
+  day: string;
+  time_blocks: Timeblock[];
+}
+
+export interface Timeblock {
+  start_time: string;
+  end_time: string;
+  amount_of_hours: number;
+  engineer: Engineer | null;
+}
+
+export interface Engineer {
+  id: number;
+  name: string;
+}

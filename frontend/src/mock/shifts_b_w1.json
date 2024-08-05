@@ -1,0 +1,149 @@
+{
+  "data": [
+    {
+      "day": "Monday",
+      "time_blocks": [
+        {
+          "start_time": "09:00",
+          "end_time": "10:00",
+          "amount_of_hours": 1,
+          "engineer": {
+            "id": 4,
+            "name": "Engineer 4"
+          }
+        },
+        {
+          "start_time": "10:00",
+          "end_time": "11:00",
+          "amount_of_hours": 1,
+          "engineer": {
+            "id": 5,
+            "name": "Engineer 5"
+          }
+        }
+      ]
+    },
+    {
+      "day": "Tuesday",
+      "time_blocks": [
+        {
+          "start_time": "09:00",
+          "end_time": "10:00",
+          "amount_of_hours": 1,
+          "engineer": null
+        },
+        {
+          "start_time": "10:00",
+          "end_time": "11:00",
+          "amount_of_hours": 1,
+          "engineer": {
+            "id": 6,
+            "name": "Engineer 6"
+          }
+        }
+      ]
+    },
+    {
+      "day": "Wednesday",
+      "time_blocks": [
+        {
+          "start_time": "09:00",
+          "end_time": "10:00",
+          "amount_of_hours": 1,
+          "engineer": {
+            "id": 4,
+            "name": "Engineer 4"
+          }
+        },
+        {
+          "start_time": "10:00",
+          "end_time": "11:00",
+          "amount_of_hours": 1,
+          "engineer": null
+        }
+      ]
+    },
+    {
+      "day": "Thursday",
+      "time_blocks": [
+        {
+          "start_time": "09:00",
+          "end_time": "10:00",
+          "amount_of_hours": 1,
+          "engineer": {
+            "id": 5,
+            "name": "Engineer 5"
+          }
+        },
+        {
+          "start_time": "10:00",
+          "end_time": "11:00",
+          "amount_of_hours": 1,
+          "engineer": null
+        }
+      ]
+    },
+    {
+      "day": "Friday",
+      "time_blocks": [
+        {
+          "start_time": "09:00",
+          "end_time": "10:00",
+          "amount_of_hours": 1,
+          "engineer": null
+        },
+        {
+          "start_time": "10:00",
+          "end_time": "11:00",
+          "amount_of_hours": 1,
+          "engineer": {
+            "id": 6,
+            "name": "Engineer 6"
+          }
+        }
+      ]
+    },
+    {
+      "day": "Saturday",
+      "time_blocks": [
+        {
+          "start_time": "09:00",
+          "end_time": "10:00",
+          "amount_of_hours": 1,
+          "engineer": {
+            "id": 4,
+            "name": "Engineer 4"
+          }
+        },
+        {
+          "start_time": "10:00",
+          "end_time": "11:00",
+          "amount_of_hours": 1,
+          "engineer": null
+        }
+      ]
+    },
+    {
+      "day": "Sunday",
+      "time_blocks": [
+        {
+          "start_time": "09:00",
+          "end_time": "10:00",
+          "amount_of_hours": 1,
+          "engineer": null
+        },
+        {
+          "start_time": "10:00",
+          "end_time": "11:00",
+          "amount_of_hours": 1,
+          "engineer": {
+            "id": 5,
+            "name": "Engineer 5"
+          }
+        }
+      ]
+    }
+  ],
+  "status": 200,
+  "statusText": "OK"
+}
