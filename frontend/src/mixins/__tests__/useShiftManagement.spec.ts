@@ -86,12 +86,24 @@ describe("useShiftManagement", () => {
     const mockError = new Error("Failed to fetch weeks");
     (requestWeeks as jest.Mock).mockRejectedValue(mockError);
 
+    const serviceId = 1;
     const { weeks, fetchWeeks, errorMessage } = useShiftManagement();
 
-    await fetchWeeks(1);
+    await fetchWeeks(serviceId);
 
-    expect(requestWeeks).toHaveBeenCalledWith(1);
+    expect(requestWeeks).toHaveBeenCalledWith(serviceId);
     expect(weeks.value).toBeNull();
     expect(errorMessage.value).toEqual(mockError.message);
+  });
+
+  it("selectService sets the selectedService and triggers fetchWeeks", async () => {
+    (requestWeeks as jest.Mock).mockResolvedValue(mockWeeks);
+
+    const { selectedService, selectService } = useShiftManagement();
+
+    await selectService(1);
+
+    expect(selectedService.value).toEqual(1);
+    expect(requestWeeks).toHaveBeenCalledWith(1);
   });
 });

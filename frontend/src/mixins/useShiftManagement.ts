@@ -32,6 +32,10 @@ export function useShiftManagement() {
       errorMessage.value = error.message;
     }
   };
+  const selectService = (serviceId: number) => {
+    selectedService.value = serviceId;
+    fetchWeeks(serviceId);
+  };
 
   return {
     services,
@@ -41,5 +45,6 @@ export function useShiftManagement() {
     weeks,
     selectedWeek,
     fetchWeeks,
+    selectService,
   };
 }
