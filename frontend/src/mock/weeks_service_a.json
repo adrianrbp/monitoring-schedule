@@ -3,27 +3,32 @@
     "past": [],
     "future": [
       {
-        "week": "32 del 2024",
+        "id": "2024-32",
+        "label": "Semana 32 del 2024",
         "start_date": "05/08/2024",
         "end_date": "11/08/2024"
       },
       {
-        "week": "33 del 2024",
+        "id": "2024-33",
+        "label": "Semana 33 del 2024",
         "start_date": "12/08/2024",
         "end_date": "18/08/2024"
       },
       {
-        "week": "34 del 2024",
+        "id": "2024-34",
+        "label": "Semana 34 del 2024",
         "start_date": "19/08/2024",
         "end_date": "25/08/2024"
       },
       {
-        "week": "35 del 2024",
+        "id": "2024-35",
+        "label": "Semana 35 del 2024",
         "start_date": "26/08/2024",
         "end_date": "01/09/2024"
       },
       {
-        "week": "36 del 2024",
+        "id": "2024-36",
+        "label": "Semana 36 del 2024",
         "start_date": "02/09/2024",
         "end_date": "08/09/2024"
       }

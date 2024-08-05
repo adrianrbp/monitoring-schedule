@@ -8,7 +8,8 @@ export interface CompanyService {
 }
 
 export interface Week {
-  week: string;
+  id: string;
+  label: string;
   start_date: string;
   end_date: string;
 }
@@ -25,3 +26,15 @@ export interface WeeksResponse {
   status: number;
   statusText: string;
 }
+
+export interface WeekDay {
+  start_date: string;
+  end_date: string;
+}
+
+export type WeeksHash = {
+  [key: string]: {
+    start_date: string;
+    end_date: string;
+  };
+};
