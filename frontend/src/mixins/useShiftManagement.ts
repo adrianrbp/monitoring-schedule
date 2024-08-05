@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 import { CompanyService, Weeks, Week } from "@/api/types";
 import { fetchCompanyServices, requestWeeks } from "@/api/CompanyServiceApi";
@@ -37,6 +37,17 @@ export function useShiftManagement() {
     fetchWeeks(serviceId);
   };
 
+  const selectWeek = (week: Week) => {
+    selectedWeek.value = week;
+  };
+
+  const dateRange = computed(() => {
+    if (selectedWeek.value) {
+      return `Del ${selectedWeek.value.start_date} al ${selectedWeek.value.end_date}`;
+    }
+    return "";
+  });
+
   return {
     services,
     selectedService,
@@ -46,5 +57,7 @@ export function useShiftManagement() {
     selectedWeek,
     fetchWeeks,
     selectService,
+    selectWeek,
+    dateRange,
   };
 }

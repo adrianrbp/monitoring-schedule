@@ -1,6 +1,6 @@
 import { useShiftManagement } from "@/mixins/useShiftManagement";
 import { fetchCompanyServices, requestWeeks } from "@/api/CompanyServiceApi";
-import { CompanyService, Weeks } from "@/api/types";
+import { CompanyService, Weeks, Week } from "@/api/types";
 
 jest.mock("@/api/CompanyServiceApi");
 
@@ -12,21 +12,21 @@ const mockServices: CompanyService[] = [
 const mockWeeks: Weeks = {
   past: [
     {
-      week: "2024-W31",
-      start_date: "2024-07-29",
-      end_date: "2024-08-04",
+      week: "31 del 2024",
+      start_date: "29/07/2024",
+      end_date: "04/08/2024",
     },
   ],
   future: [
     {
-      week: "2024-W32",
-      start_date: "2024-08-05",
-      end_date: "2024-08-11",
+      week: "32 del 2024",
+      start_date: "05/08/2024",
+      end_date: "11/08/2024",
     },
     {
-      week: "2024-W33",
-      start_date: "2024-08-12",
-      end_date: "2024-08-18",
+      week: "33 del 2024",
+      start_date: "12/08/2024",
+      end_date: "18/08/2024",
     },
   ],
 };
@@ -105,5 +105,38 @@ describe("useShiftManagement", () => {
 
     expect(selectedService.value).toEqual(1);
     expect(requestWeeks).toHaveBeenCalledWith(1);
+  });
+
+  it("selectWeek sets the selectedWeek", () => {
+    const { selectedWeek, selectWeek } = useShiftManagement();
+
+    // 2024-W32
+    const mockWeek32: Week = {
+      week: "32 del 2024",
+      start_date: "05/08/2024",
+      end_date: "11/08/2024",
+    };
+    selectWeek(mockWeek32);
+
+    expect(selectedWeek.value).toEqual(mockWeek32);
+  });
+
+  it("dateRange returns the correct formatted date range when a week is selected", () => {
+    const { selectWeek, dateRange } = useShiftManagement();
+
+    const mockWeek32: Week = {
+      week: "32 del 2024",
+      start_date: "05/08/2024",
+      end_date: "11/08/2024",
+    };
+    selectWeek(mockWeek32);
+
+    expect(dateRange.value).toEqual("Del 05/08/2024 al 11/08/2024");
+  });
+
+  it("dateRange returns an empty string when no week is selected", () => {
+    const { dateRange } = useShiftManagement();
+
+    expect(dateRange.value).toEqual("");
   });
 });
