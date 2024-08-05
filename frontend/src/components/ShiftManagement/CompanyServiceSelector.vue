@@ -17,19 +17,15 @@ import { CompanyService } from "@/api/types";
 // Inject the mixin from the parent
 const shiftManagement = inject("shiftManagement") as {
   services: CompanyService[]; // ref
-  selectedService: { value: number | null }; // ref
   fetchServices: () => Promise<void>;
+  selectService: (serviceId: string) => void;
 };
 
 if (!shiftManagement) {
   throw new Error("shiftManagement not provided");
 }
 
-const { services, selectedService, fetchServices } = shiftManagement;
-
-const selectService = (serviceId: string) => {
-  selectedService.value = Number(serviceId);
-};
+const { services, fetchServices, selectService } = shiftManagement;
 
 onMounted(() => {
   fetchServices();

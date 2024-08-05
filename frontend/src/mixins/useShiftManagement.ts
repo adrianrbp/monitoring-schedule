@@ -32,9 +32,9 @@ export function useShiftManagement() {
       errorMessage.value = error.message;
     }
   };
-  const selectService = (serviceId: number) => {
-    selectedService.value = serviceId;
-    fetchWeeks(serviceId);
+  const selectService = (serviceId: string) => {
+    selectedService.value = Number(serviceId);
+    fetchWeeks(Number(serviceId));
   };
 
   const selectWeek = (week: Week) => {

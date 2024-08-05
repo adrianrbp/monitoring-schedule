@@ -101,7 +101,7 @@ describe("useShiftManagement", () => {
 
     const { selectedService, selectService } = useShiftManagement();
 
-    await selectService(1);
+    await selectService("1");
 
     expect(selectedService.value).toEqual(1);
     expect(requestWeeks).toHaveBeenCalledWith(1);
