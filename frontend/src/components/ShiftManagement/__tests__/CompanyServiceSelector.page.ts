@@ -1,6 +1,6 @@
 import { VueWrapper, mount } from "@vue/test-utils";
-import CompanyServiceSelector from "@/components/ShiftManagement/CompanyServiceSelector.vue";
 import { nextTick } from "vue";
+import CompanyServiceSelector from "@/components/ShiftManagement/CompanyServiceSelector.vue";
 import { CompanyService } from "@/api/types";
 
 export class CompanyServiceSelectorPage {
@@ -19,10 +19,10 @@ export class CompanyServiceSelectorPage {
         provide: {
           shiftManagement: {
             services,
-            selectedService: { value: null },
             fetchServices: this.providerFetchServicesMock,
-            fetchWeeks: this.providerFetchWeeksMock,
             selectService: this.providerSelectServiceMock,
+            selectedService: { value: null },
+            fetchWeeks: this.providerFetchWeeksMock,
           },
         },
       },
