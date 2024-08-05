@@ -1,12 +1,15 @@
 import { ref } from "vue";
 
-import { CompanyService } from "@/api/types";
-import { fetchCompanyServices } from "@/api/CompanyServiceApi";
+import { CompanyService, Weeks, Week } from "@/api/types";
+import { fetchCompanyServices, requestWeeks } from "@/api/CompanyServiceApi";
 
 export function useShiftManagement() {
   const services = ref<CompanyService[]>([]);
   const selectedService = ref<number | null>(null);
   const errorMessage = ref<string | null>(null);
+
+  const weeks = ref<Weeks | null>(null);
+  const selectedWeek = ref<Week | null>(null);
 
   const fetchServices = async () => {
     try {
@@ -19,10 +22,24 @@ export function useShiftManagement() {
     }
   };
 
+  const fetchWeeks = async (serviceId: number) => {
+    try {
+      const data: Weeks = await requestWeeks(serviceId);
+      weeks.value = data;
+      errorMessage.value = null;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      errorMessage.value = error.message;
+    }
+  };
+
   return {
     services,
     selectedService,
     fetchServices,
     errorMessage,
+    weeks,
+    selectedWeek,
+    fetchWeeks,
   };
 }
