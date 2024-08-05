@@ -1,5 +1,6 @@
 <template>
   <div class="flex flex-col space-y-4">
+    <h1 class="text-center">Company Service Shifts</h1>
     <div class="w-full max-w-xs mx-auto">
       <CompanyServiceSelector />
     </div>
