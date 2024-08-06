@@ -57,15 +57,41 @@ export interface Timeblock {
   engineer: Engineer | null;
 }
 
+export interface Engineer {
+  id: number;
+  name: string;
+  color: string;
+  hours_assigned?: number;
+}
+
 export interface EngineersResponse {
   data: Engineer[];
   status: number;
   statusText: string;
 }
 
-export interface Engineer {
+interface EngineerAvailability {
   id: number;
-  name: string;
-  color: string;
-  hours_assigned?: number;
+  available: boolean;
+}
+
+interface TimeBlockAv {
+  time: string;
+  engineers: EngineerAvailability[];
+}
+
+export interface DayAvailability {
+  day: string;
+  times: TimeBlockAv[];
+}
+
+export interface AvailabilityResponse {
+  availability: DayAvailability[];
+  status: number;
+  statusText: string;
+}
+
+export interface AvailabilityPayload {
+  week: string;
+  availability: DayAvailability[];
 }
