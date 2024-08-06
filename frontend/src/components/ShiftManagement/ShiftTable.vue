@@ -21,10 +21,13 @@
             v-for="timeBlock in shift.time_blocks"
             :key="timeBlock.start_time"
           >
-            <td class="py-2 px-4">
+            <td class="py-2 px-4" :class="getColor(timeBlock.engineer)">
               {{ timeBlock.start_time }} - {{ timeBlock.end_time }}
             </td>
-            <td class="py-2 px-4" :class="getColor(timeBlock.engineer)">
+            <td
+              class="py-2 px-4"
+              :style="{ backgroundColor: getEngineerColor(timeBlock.engineer) }"
+            >
               {{ getEngineerName(timeBlock.engineer) }}
             </td>
           </tr>
@@ -39,10 +42,10 @@ import { inject } from "vue";
 
 const shiftManagement = inject("shiftManagement");
 
-const { shifts } = shiftManagement;
+const { shifts, getEngineerColor } = shiftManagement;
 
 const getColor = (engineer) => {
-  return engineer ? "bg-green-400" : "bg-red-400";
+  return engineer ? "bg-green-200" : "bg-red-200";
 };
 
 const getEngineerName = (engineer) => {

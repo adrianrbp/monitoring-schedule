@@ -11,6 +11,7 @@ export class ShiftTablePage {
         provide: {
           shiftManagement: {
             shifts,
+            getEngineerColor: jest.fn(),
           },
         },
       },
@@ -37,7 +38,7 @@ export class ShiftTablePage {
     return this.timeRows[index].find("td:nth-child(2)").text();
   }
 
-  getEngineerClasses(index: number): string[] {
-    return this.timeRows[index].find("td:nth-child(2)").classes();
+  getTimeClasses(index: number): string[] {
+    return this.timeRows[index].find("td:nth-child(1)").classes();
   }
 }

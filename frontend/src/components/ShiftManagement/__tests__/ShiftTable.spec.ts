@@ -11,7 +11,7 @@ describe("ShiftTable.vue", () => {
           start_time: "09:00",
           end_time: "10:00",
           amount_of_hours: 1,
-          engineer: { id: 1, name: "Engineer 1" },
+          engineer: { id: 1, name: "Engineer 1", color: "bg-red-400" },
         },
         {
           start_time: "10:00",
@@ -28,7 +28,7 @@ describe("ShiftTable.vue", () => {
           start_time: "09:00",
           end_time: "10:00",
           amount_of_hours: 1,
-          engineer: { id: 2, name: "Engineer 2" },
+          engineer: { id: 2, name: "Engineer 2", color: "bg-green-400" },
         },
         {
           start_time: "10:00",
@@ -67,9 +67,9 @@ describe("ShiftTable.vue", () => {
   });
 
   it("applies correct Tailwind classes based on engineer assignment", () => {
-    expect(page.getEngineerClasses(0)).toContain("bg-green-400"); // Engineer assigned
-    expect(page.getEngineerClasses(1)).toContain("bg-red-400"); // No engineer assigned
-    expect(page.getEngineerClasses(2)).toContain("bg-green-400"); // Engineer assigned
-    expect(page.getEngineerClasses(3)).toContain("bg-red-400"); // No engineer assigned
+    expect(page.getTimeClasses(0)).toContain("bg-green-200"); // Engineer assigned
+    expect(page.getTimeClasses(1)).toContain("bg-red-200"); // No engineer assigned
+    expect(page.getTimeClasses(2)).toContain("bg-green-200"); // Engineer assigned
+    expect(page.getTimeClasses(3)).toContain("bg-red-200"); // No engineer assigned
   });
 });
