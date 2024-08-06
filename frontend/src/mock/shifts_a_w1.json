@@ -1,7 +1,7 @@
 {
   "data": [
     {
-      "day": "Monday",
+      "day": "Lunes 05 de Agosto",
       "time_blocks": [
         {
           "start_time": "09:00",
@@ -9,7 +9,8 @@
           "amount_of_hours": 1,
           "engineer": {
             "id": 1,
-            "name": "Engineer 1"
+            "name": "Engineer 1",
+            "color": "#a5b4fc"
           }
         },
         {
@@ -18,13 +19,14 @@
           "amount_of_hours": 1,
           "engineer": {
             "id": 2,
-            "name": "Engineer 2"
+            "name": "Engineer 2",
+            "color": "#5eead4"
           }
         }
       ]
     },
     {
-      "day": "Tuesday",
+      "day": "Martes 06 de Agosto",
       "time_blocks": [
         {
           "start_time": "09:00",
@@ -38,13 +40,14 @@
           "amount_of_hours": 1,
           "engineer": {
             "id": 3,
-            "name": "Engineer 3"
+            "name": "Engineer 3",
+            "color": "#bef264"
           }
         }
       ]
     },
     {
-      "day": "Wednesday",
+      "day": "Miercoles 07 de Agosto",
       "time_blocks": [
         {
           "start_time": "09:00",
@@ -52,7 +55,8 @@
           "amount_of_hours": 1,
           "engineer": {
             "id": 1,
-            "name": "Engineer 1"
+            "name": "Engineer 1",
+            "color": "#a5b4fc"
           }
         },
         {
@@ -64,7 +68,7 @@
       ]
     },
     {
-      "day": "Thursday",
+      "day": "Jueves 08 de Agosto",
       "time_blocks": [
         {
           "start_time": "09:00",
@@ -72,7 +76,8 @@
           "amount_of_hours": 1,
           "engineer": {
             "id": 2,
-            "name": "Engineer 2"
+            "name": "Engineer 2",
+            "color": "#5eead4"
           }
         },
         {
@@ -84,7 +89,7 @@
       ]
     },
     {
-      "day": "Friday",
+      "day": "Viernes 09 de Agosto",
       "time_blocks": [
         {
           "start_time": "09:00",
@@ -98,13 +103,14 @@
           "amount_of_hours": 1,
           "engineer": {
             "id": 3,
-            "name": "Engineer 3"
+            "name": "Engineer 3",
+            "color": "#bef264"
           }
         }
       ]
     },
     {
-      "day": "Saturday",
+      "day": "Sabado 10 de Agosto",
       "time_blocks": [
         {
           "start_time": "09:00",
@@ -112,7 +118,8 @@
           "amount_of_hours": 1,
           "engineer": {
             "id": 1,
-            "name": "Engineer 1"
+            "name": "Engineer 1",
+            "color": "#a5b4fc"
           }
         },
         {
@@ -124,7 +131,7 @@
       ]
     },
     {
-      "day": "Sunday",
+      "day": "Domingo 11 de Agosto",
       "time_blocks": [
         {
           "start_time": "09:00",
@@ -138,7 +145,8 @@
           "amount_of_hours": 1,
           "engineer": {
             "id": 2,
-            "name": "Engineer 2"
+            "name": "Engineer 2",
+            "color": "#5eead4"
           }
         }
       ]

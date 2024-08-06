@@ -9,6 +9,9 @@
     </div>
     <section v-if="selectedService && selectedWeek">
       <article>
+        <EngineerList />
+      </article>
+      <article>
         <ShiftTable />
       </article>
     </section>
@@ -20,6 +23,7 @@ import { provide, onMounted } from "vue";
 import { useShiftManagement } from "@/mixins/useShiftManagement";
 import CompanyServiceSelector from "@/components/ShiftManagement/CompanyServiceSelector.vue";
 import WeekSelector from "@/components/ShiftManagement/WeekSelector.vue";
+import EngineerList from "@/components/ShiftManagement/EngineerList.vue";
 import ShiftTable from "@/components/ShiftManagement/ShiftTable.vue";
 
 const shiftManagement = useShiftManagement();

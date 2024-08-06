@@ -66,5 +66,6 @@ export interface EngineersResponse {
 export interface Engineer {
   id: number;
   name: string;
+  color: string;
   hours_assigned?: number;
 }

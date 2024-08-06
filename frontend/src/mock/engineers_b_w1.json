@@ -2,18 +2,21 @@
   "data": [
     {
       "id": 4,
-      "name": "Engineer D",
-      "hours_assigned": 20
+      "name": "Engineer 4",
+      "hours_assigned": 3,
+      "color": "#a5b4fc"
     },
     {
       "id": 5,
-      "name": "Engineer E",
-      "hours_assigned": 15
+      "name": "Engineer 5",
+      "hours_assigned": 3,
+      "color": "#5eead4"
     },
     {
       "id": 6,
-      "name": "Engineer F",
-      "hours_assigned": 10
+      "name": "Engineer 6",
+      "hours_assigned": 2,
+      "color": "#bef264"
     }
   ],
   "status": 200,
