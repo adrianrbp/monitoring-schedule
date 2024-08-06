@@ -1,0 +1,21 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Engineer A",
+      "hours_assigned": 20
+    },
+    {
+      "id": 2,
+      "name": "Engineer B",
+      "hours_assigned": 15
+    },
+    {
+      "id": 3,
+      "name": "Engineer C",
+      "hours_assigned": 10
+    }
+  ],
+  "status": 200,
+  "statusText": "OK"
+}

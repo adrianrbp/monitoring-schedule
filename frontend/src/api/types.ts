@@ -57,7 +57,14 @@ export interface Timeblock {
   engineer: Engineer | null;
 }
 
+export interface EngineersResponse {
+  data: Engineer[];
+  status: number;
+  statusText: string;
+}
+
 export interface Engineer {
   id: number;
   name: string;
+  hours_assigned?: number;
 }
