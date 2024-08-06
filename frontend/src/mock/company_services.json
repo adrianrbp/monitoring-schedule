@@ -1,0 +1,18 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Service A"
+    },
+    {
+      "id": 2,
+      "name": "Service B"
+    },
+    {
+      "id": 3,
+      "name": "Service C"
+    }
+  ],
+  "status": 200,
+  "statusText": "OK"
+}

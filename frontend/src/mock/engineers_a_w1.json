@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Engineer 1",
+      "hours_assigned": 3,
+      "color": "#a5b4fc"
+    },
+    {
+      "id": 2,
+      "name": "Engineer 2",
+      "hours_assigned": 3,
+      "color": "#5eead4"
+    },
+    {
+      "id": 3,
+      "name": "Engineer 3",
+      "hours_assigned": 2,
+      "color": "#bef264"
+    }
+  ],
+  "status": 200,
+  "statusText": "OK"
+}

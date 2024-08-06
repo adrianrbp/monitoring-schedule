@@ -31,3 +31,14 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# IDE and Editor directories
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

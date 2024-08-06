@@ -1,0 +1,70 @@
+{
+  "data": {
+    "past": [
+      {
+        "id": "2024-31",
+        "label": "Semana 31 del 2024",
+        "start_date": "29/07/2024",
+        "end_date": "04/08/2024"
+      },
+      {
+        "id": "2024-30",
+        "label": "Semana 30 del 2024",
+        "start_date": "22/07/2024",
+        "end_date": "28/07/2024"
+      },
+      {
+        "id": "2024-29",
+        "label": "Semana 29 del 2024",
+        "start_date": "15/07/2024",
+        "end_date": "21/07/2024"
+      },
+      {
+        "id": "2024-28",
+        "label": "Semana 28 del 2024",
+        "start_date": "08/07/2024",
+        "end_date": "14/07/2024"
+      },
+      {
+        "id": "2024-27",
+        "label": "Semana 27 del 2024",
+        "start_date": "01/07/2024",
+        "end_date": "07/07/2024"
+      },
+      {
+        "id": "2024-26",
+        "label": "Semana 26 del 2024",
+        "start_date": "24/06/2024",
+        "end_date": "30/06/2024"
+      }
+    ],
+    "future": [
+      {
+        "id": "2024-32",
+        "label": "Semana 32 del 2024",
+        "start_date": "05/08/2024",
+        "end_date": "11/08/2024"
+      },
+      {
+        "id": "2024-33",
+        "label": "Semana 33 del 2024",
+        "start_date": "12/08/2024",
+        "end_date": "18/08/2024"
+      },
+      {
+        "id": "2024-34",
+        "label": "Semana 34 del 2024",
+        "start_date": "19/08/2024",
+        "end_date": "25/08/2024"
+      },
+      {
+        "id": "2024-35",
+        "label": "Semana 35 del 2024",
+        "start_date": "26/08/2024",
+        "end_date": "01/09/2024"
+      }
+    ]
+  },
+  "status": 200,
+  "statusText": "OK"
+}
