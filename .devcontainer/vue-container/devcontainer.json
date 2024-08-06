@@ -25,6 +25,48 @@
           },
           "defaultFormatter": "esbenp.prettier-vscode"
         },
+        "peacock": {
+          "affectTabActiveBorder": true,
+          "remoteColor": "#42b883",
+          "favoriteColors": [
+            {
+              "name": "JavaScript Yellow",
+              "value": "#f9e64f"
+            },
+            {
+              "name": "Node Green",
+              "value": "#215732"
+            },
+            {
+              "name": "React Blue",
+              "value": "#61dafb"
+            },
+            {
+              "name": "Vue Green",
+              "value": "#42b883"
+            }
+          ]
+        },
+        "workbench.colorCustomizations": {
+          "activityBar.activeBackground": "#65c89b",
+          "activityBar.background": "#65c89b",
+          "activityBar.foreground": "#15202b",
+          "activityBar.inactiveForeground": "#15202b99",
+          "activityBarBadge.background": "#945bc4",
+          "activityBarBadge.foreground": "#e7e7e7",
+          "commandCenter.border": "#15202b99",
+          "sash.hoverBorder": "#65c89b",
+          "statusBar.background": "#42b883",
+          "statusBar.foreground": "#15202b",
+          "statusBarItem.hoverBackground": "#359268",
+          "statusBarItem.remoteBackground": "#42b883",
+          "statusBarItem.remoteForeground": "#15202b",
+          "tab.activeBorder": "#65c89b",
+          "titleBar.activeBackground": "#42b883",
+          "titleBar.activeForeground": "#15202b",
+          "titleBar.inactiveBackground": "#42b88399",
+          "titleBar.inactiveForeground": "#15202b99"
+        },
         "tailwindCSS": {
           "includeLanguages": {
             "plaintext": "html"
@@ -59,7 +101,9 @@
         "marcoroth.stimulus-lsp",
         "usernamehw.errorlens",
         "aaron-bond.better-comments",
-        "VisualStudioExptTeam.vscodeintellicode"
+        "VisualStudioExptTeam.vscodeintellicode",
+        "johnpapa.vscode-peacock",
+        "mariusalchimavicius.json-to-ts"
       ]
     }
   }
