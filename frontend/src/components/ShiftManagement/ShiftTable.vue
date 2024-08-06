@@ -5,10 +5,15 @@
       :key="shift.day"
       class="border rounded-lg p-4 shadow-lg bg-white"
     >
-      <table class="min-w-full">
-        <thead>
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-yellow-100">
           <tr>
-            <th class="py-2 px-4 text-center" colspan="2">{{ shift.day }}</th>
+            <th
+              colspan="2"
+              class="px-6 py-3 text-left text-xs font-medium text-black uppercase tracking-wider"
+            >
+              {{ shift.day }}
+            </th>
           </tr>
         </thead>
         <tbody>
