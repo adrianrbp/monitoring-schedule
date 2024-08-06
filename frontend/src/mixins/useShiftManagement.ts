@@ -1,7 +1,18 @@
 import { ref, computed } from "vue";
 
-import { CompanyService, Weeks, Week, WeeksHash, WeekDay } from "@/api/types";
-import { fetchCompanyServices, requestWeeks } from "@/api/CompanyServiceApi";
+import {
+  CompanyService,
+  Weeks,
+  Week,
+  WeeksHash,
+  WeekDay,
+  Shift,
+} from "@/api/types";
+import {
+  fetchCompanyServices,
+  requestWeeks,
+  requestShifts,
+} from "@/api/CompanyServiceApi";
 
 export function useShiftManagement() {
   const services = ref<CompanyService[]>([]);
@@ -13,6 +24,8 @@ export function useShiftManagement() {
   const selectedWeek = ref<string | null>(null);
   const allWeeks = ref<WeeksHash | null>(null);
   const selectedWeekData = ref<WeekDay | null>(null);
+
+  const shifts = ref<Shift[]>([]);
 
   const fetchServices = async () => {
     try {
@@ -37,16 +50,35 @@ export function useShiftManagement() {
       errorMessage.value = error.message;
     }
   };
-  const selectService = (serviceId: string) => {
-    selectedService.value = Number(serviceId);
-    fetchWeeks(Number(serviceId));
+
+  const fetchShifts = async () => {
+    if (selectedService.value && selectedWeek.value) {
+      try {
+        const data: Shift[] = await requestShifts(
+          selectedService.value,
+          selectedWeek.value
+        );
+        shifts.value = data;
+        errorMessage.value = null;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (error: any) {
+        errorMessage.value = error.message;
+      }
+    }
   };
 
-  const selectWeek = (weekId: string) => {
+  const selectService = async (serviceId: string) => {
+    selectedWeek.value = null;
+    selectedService.value = Number(serviceId);
+    await fetchWeeks(Number(serviceId));
+  };
+
+  const selectWeek = async (weekId: string) => {
     selectedWeek.value = weekId;
     if (allWeeks.value) {
       selectedWeekData.value = allWeeks.value[weekId];
     }
+    await fetchShifts();
   };
 
   const dateRange = computed(() => {
@@ -79,9 +111,10 @@ export function useShiftManagement() {
     pastWeeks,
     futureWeeks,
     selectedWeek,
-    fetchWeeks,
     selectService,
     selectWeek,
     dateRange,
+    // allWeeks,
+    shifts,
   };
 }
