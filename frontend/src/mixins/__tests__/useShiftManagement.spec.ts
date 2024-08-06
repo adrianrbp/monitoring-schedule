@@ -3,8 +3,9 @@ import {
   fetchCompanyServices,
   requestWeeks,
   requestShifts,
+  requestEngineers,
 } from "@/api/CompanyServiceApi";
-import { CompanyService, Weeks } from "@/api/types";
+import { CompanyService, Weeks, Engineer } from "@/api/types";
 
 import WeeksServiceA from "@/mock/weeks_service_a.json";
 import WeeksServiceB from "@/mock/weeks_service_b.json";
@@ -12,7 +13,10 @@ import WeeksServiceB from "@/mock/weeks_service_b.json";
 import ShiftsServiceAWeek1 from "@/mock/shifts_a_w1.json";
 import ShiftsServiceBWeek1 from "@/mock/shifts_b_w1.json";
 
-import { nextTick } from "vue";
+import EngineersServiceAWeek1 from "@/mock/engineers_a_w1.json";
+import EngineersServiceBWeek1 from "@/mock/engineers_b_w1.json";
+
+// import { nextTick } from "vue";
 jest.mock("@/api/CompanyServiceApi");
 
 const mockServices: CompanyService[] = [
@@ -117,9 +121,19 @@ describe("useShiftManagement", () => {
           }
         }
       );
+      (requestEngineers as jest.Mock).mockImplementation(
+        async (serviceId: number, weekId: string) => {
+          if (serviceId === 1 && weekId === "2024-32") {
+            return EngineersServiceAWeek1;
+          } else {
+            return EngineersServiceBWeek1;
+          }
+        }
+      );
 
       const {
         shifts,
+        engineers,
         selectedService,
         selectedWeek,
         selectService,
@@ -134,7 +148,9 @@ describe("useShiftManagement", () => {
 
       expect(selectedWeek.value).toEqual("2024-32");
       expect(shifts.value).toEqual(ShiftsServiceAWeek1);
+      expect(engineers.value).toEqual(EngineersServiceAWeek1);
       expect(requestWeeks).toHaveBeenCalledWith(1);
+      expect(requestEngineers).toHaveBeenCalledWith(1, "2024-32");
       expect(requestShifts).toHaveBeenCalledWith(1, "2024-32");
     });
   });
@@ -183,6 +199,29 @@ describe("useShiftManagement", () => {
       const { dateRange } = useShiftManagement();
 
       expect(dateRange.value).toEqual("");
+    });
+  });
+
+  describe("engineer background Color", () => {
+    let getEngineerColor: (engineer: Engineer | null) => string;
+
+    beforeEach(() => {
+      const shiftManagement = useShiftManagement();
+      getEngineerColor = shiftManagement.getEngineerColor;
+    });
+
+    it("returns the correct color for a given engineer", () => {
+      const engineer = {
+        id: 1,
+        name: "Engineer 1",
+        hours_assigned: 10,
+        color: "#a5b4fc",
+      };
+      expect(getEngineerColor(engineer)).toBe("#a5b4fc");
+    });
+
+    it("returns an empty string when engineer is null", () => {
+      expect(getEngineerColor(null)).toBe("");
     });
   });
 

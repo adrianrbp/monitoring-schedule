@@ -7,11 +7,13 @@ import {
   WeeksHash,
   WeekDay,
   Shift,
+  Engineer,
 } from "@/api/types";
 import {
   fetchCompanyServices,
   requestWeeks,
   requestShifts,
+  requestEngineers,
 } from "@/api/CompanyServiceApi";
 
 export function useShiftManagement() {
@@ -26,6 +28,7 @@ export function useShiftManagement() {
   const selectedWeekData = ref<WeekDay | null>(null);
 
   const shifts = ref<Shift[]>([]);
+  const engineers = ref<Engineer[]>([]);
 
   const fetchServices = async () => {
     try {
@@ -67,6 +70,22 @@ export function useShiftManagement() {
     }
   };
 
+  const fetchEngineers = async () => {
+    if (selectedService.value && selectedWeek.value) {
+      try {
+        const data: Engineer[] = await requestEngineers(
+          selectedService.value,
+          selectedWeek.value
+        );
+        engineers.value = data;
+        errorMessage.value = null;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (error: any) {
+        errorMessage.value = error.message;
+      }
+    }
+  };
+
   const selectService = async (serviceId: string) => {
     selectedWeek.value = null;
     selectedService.value = Number(serviceId);
@@ -78,7 +97,7 @@ export function useShiftManagement() {
     if (allWeeks.value) {
       selectedWeekData.value = allWeeks.value[weekId];
     }
-    await fetchShifts();
+    await Promise.all([fetchEngineers(), fetchShifts()]);
   };
 
   const dateRange = computed(() => {
@@ -103,6 +122,10 @@ export function useShiftManagement() {
     return hash;
   };
 
+  const getEngineerColor = (engineer: Engineer | null) => {
+    return engineer ? engineer.color : "";
+  };
+
   return {
     services,
     selectedService,
@@ -114,7 +137,8 @@ export function useShiftManagement() {
     selectService,
     selectWeek,
     dateRange,
-    // allWeeks,
     shifts,
+    engineers,
+    getEngineerColor,
   };
 }
