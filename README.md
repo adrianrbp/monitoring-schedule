@@ -26,17 +26,19 @@
 ### Componentes
 #### Endpoints - Gestion de Turnos (Shifts)
 - 1st Dropdown (Services)
-  - /api/company_services 
+  - GET /api/company_services 
 - 2nd Dropdown (Weeks)
-  - /api/company_services/:id/weeks 
+  - GET /api/company_services/:id/weeks 
 - Engineers Table
-  - /api/company_services/:id/engineers?week=YYYY-WW 
+  - GET /api/company_services/:id/engineers?week=YYYY-WW 
 - Shifts Table
-  - /api/company_services/:id/shifts?week=YYYY-WW
+  - GET /api/company_services/:id/shifts?week=YYYY-WW
 #### Endpoints - Gestion de Disponibilidad (Availability)
-- Los de gestion de turnos para el filtrado y llenado de semana
+- Dropdowns anteriores (gestion de turnos) para el filtrado y llenado de semana
+- Boton Editar Disponibilidad: Consultar Disponibilidad de ingenieros
+  - GET /api/company_services/:id/engineers/availability?week=YYYY-WW
 - Updates Engineer Availability 
-  - /api/company_services/:id/engineers/availability
+  - POST /api/company_services/:id/engineers/availability
     - week
     - availability (array)
       - engineer_id
