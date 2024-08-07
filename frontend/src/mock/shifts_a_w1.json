@@ -1,7 +1,8 @@
 {
   "data": [
     {
-      "day": "Lunes 05 de Agosto",
+      "day": "Monday",
+      "dayLabel": "Lunes 05 de Agosto",
       "time_blocks": [
         {
           "start_time": "09:00",
@@ -26,7 +27,8 @@
       ]
     },
     {
-      "day": "Martes 06 de Agosto",
+      "day": "Tuesday",
+      "dayLabel": "Martes 06 de Agosto",
       "time_blocks": [
         {
           "start_time": "09:00",
@@ -47,7 +49,8 @@
       ]
     },
     {
-      "day": "Miercoles 07 de Agosto",
+      "day": "Wednesday",
+      "dayLabel": "Miercoles 07 de Agosto",
       "time_blocks": [
         {
           "start_time": "09:00",
@@ -68,7 +71,8 @@
       ]
     },
     {
-      "day": "Jueves 08 de Agosto",
+      "day": "Thursday",
+      "dayLabel": "Jueves 08 de Agosto",
       "time_blocks": [
         {
           "start_time": "09:00",
@@ -89,7 +93,8 @@
       ]
     },
     {
-      "day": "Viernes 09 de Agosto",
+      "day": "Friday",
+      "dayLabel": "Viernes 09 de Agosto",
       "time_blocks": [
         {
           "start_time": "09:00",
@@ -110,7 +115,8 @@
       ]
     },
     {
-      "day": "Sabado 10 de Agosto",
+      "day": "Saturday",
+      "dayLabel": "Sabado 10 de Agosto",
       "time_blocks": [
         {
           "start_time": "09:00",
@@ -131,7 +137,8 @@
       ]
     },
     {
-      "day": "Domingo 11 de Agosto",
+      "day": "Sunday",
+      "dayLabel": "Domingo 11 de Agosto",
       "time_blocks": [
         {
           "start_time": "09:00",
