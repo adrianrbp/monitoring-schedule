@@ -75,7 +75,7 @@ test.describe("Check Company Service Shifts", () => {
       unassignedTimeBlock.locator('[aria-label="Hour 09:00"]')
     ).toHaveText("09:00 - 10:00");
     await expect(
-      unassignedTimeBlock.locator('[aria-label="Engineer Assigned ⚠"]')
+      unassignedTimeBlock.locator('[aria-label="Assigned Engineer ⚠"]')
     ).toHaveText("⚠");
   });
 });

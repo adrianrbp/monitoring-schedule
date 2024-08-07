@@ -4,6 +4,7 @@
       type="checkbox"
       :checked="isEngineerAvailable(day, timeBlock, engineer.id)"
       @change="updateAvailability(day, timeBlock, engineer.id)"
+      :aria-label="`Availability ${day} ${timeBlock} Engineer ${engineer.id}`"
     />
   </td>
 </template>
