@@ -1,17 +1,34 @@
 import { mount, VueWrapper } from "@vue/test-utils";
+import { nextTick, ref, Ref } from "vue";
 import ShiftTable from "@/components/ShiftManagement/ShiftTable.vue";
-import { Shift } from "@/api/types"; // Assume Shift is the type of the shifts data
+import { Shift, Engineer } from "@/api/types"; // Assume Shift is the type of the shifts data
 
 export class ShiftTablePage {
   private wrapper: VueWrapper;
+  public shifts: Ref<Shift[]>;
+  public engineers: Ref<Engineer[]>;
+  public showAvailabilityTable: Ref<boolean>;
 
-  constructor(shifts: Shift[]) {
+  constructor(
+    shifts: Shift[],
+    engineers: Engineer[],
+    showAvailabilityTable: boolean
+  ) {
+    this.shifts = ref(shifts);
+    this.engineers = ref(engineers);
+    this.showAvailabilityTable = ref(showAvailabilityTable);
+
     this.wrapper = mount(ShiftTable, {
       global: {
         provide: {
           shiftManagement: {
             shifts,
+            engineers: this.engineers,
             getEngineerColor: jest.fn(),
+            // getEngineerColor: (engineer: Engineer) => engineer.color,
+          },
+          availabilityManagement: {
+            showAvailabilityTable: this.showAvailabilityTable,
           },
         },
       },
@@ -19,26 +36,45 @@ export class ShiftTablePage {
   }
 
   get dayHeaders() {
-    return this.wrapper.findAll('th[colspan="2"]');
+    return this.wrapper.findAll('[aria-label^="Header"]');
   }
 
-  get timeRows() {
-    return this.wrapper.findAll("tbody tr");
+  getEngineerHeaders() {
+    return this.wrapper.findAll('[aria-label^="Header Engineer"]');
   }
-
   getDayHeaderText(index: number): string {
     return this.dayHeaders[index].text();
   }
 
+  get weekTimeRows() {
+    return this.wrapper.findAll('tbody [aria-label^="Time block"]');
+  }
+  getTimeRows(dayLabel: string) {
+    return this.wrapper.findAll(`tbody [aria-label^="Time block ${dayLabel}"]`);
+  }
+
   getTimeRowText(index: number): string {
-    return this.timeRows[index].find("td").text();
+    return this.weekTimeRows[index].find('[aria-label^="Hour"]').text();
+  }
+  getTimeClasses(index: number): string[] {
+    return this.weekTimeRows[index].find('[aria-label^="Hour"]').classes();
   }
 
   getEngineerText(index: number): string {
-    return this.timeRows[index].find("td:nth-child(2)").text();
+    return this.weekTimeRows[index]
+      .find('[aria-label^="Assigned Engineer"]')
+      .text();
   }
 
-  getTimeClasses(index: number): string[] {
-    return this.timeRows[index].find("td:nth-child(1)").classes();
+  getEngineerBackgroundStyle(index: number): string {
+    const engineerColor = this.weekTimeRows[index]
+      .find('[aria-label^="Assigned Engineer"]')
+      .attributes("style");
+    return engineerColor ?? "";
+  }
+
+  async toggleAvailabilityTable() {
+    this.showAvailabilityTable.value = !this.showAvailabilityTable.value;
+    await nextTick();
   }
 }

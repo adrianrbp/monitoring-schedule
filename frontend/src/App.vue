@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="max-w-xl mx-auto mt-10">
+  <div id="app" class="w-full mx-auto mt-10">
     <ShiftManagement />
   </div>
 </template>
