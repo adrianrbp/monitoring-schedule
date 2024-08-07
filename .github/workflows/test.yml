@@ -53,13 +53,13 @@ jobs:
         with:
           name: jest-test-report
           path: frontend/junit.xml
-      - name: Display Jest Test Results
-        uses: dorny/test-reporter@v1
-        if: always()  # Run this step even if previous steps fail
-        with:
-          name: Jest Tests
-          path: frontend/junit.xml
-          reporter: jest-junit
+      # - name: Display Jest Test Results
+      #   uses: dorny/test-reporter@v1
+      #   if: always()  # Run this step even if previous steps fail
+      #   with:
+      #     name: Jest Tests
+      #     path: frontend/junit.xml
+      #     reporter: jest-junit
 
       # - name: Start Rails server
       #   run: |
@@ -113,11 +113,11 @@ jobs:
           name: playwright-report
           path: frontend/playwright-tests.xml
 
-      - name: Display Playwright Test Results
-        uses: dorny/test-reporter@v1
-        if: always()  # Run this step even if previous steps fail
-        with:
-          name: Playwright Tests
-          path: frontend/playwright-tests.xml
-          reporter: java-junit
+      # - name: Display Playwright Test Results
+      #   uses: dorny/test-reporter@v1
+      #   if: always()  # Run this step even if previous steps fail
+      #   with:
+      #     name: Playwright Tests
+      #     path: frontend/playwright-tests.xml
+      #     reporter: java-junit
 
