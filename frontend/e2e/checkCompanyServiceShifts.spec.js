@@ -61,7 +61,7 @@ test.describe("Check Company Service Shifts", () => {
       ).toHaveText(`${timeBlock.start} - ${timeBlock.end}`);
       await expect(
         specificTimeBlock.locator(
-          `[aria-label="Engineer Assigned ${timeBlock.engineer}"]`
+          `[aria-label="Assigned Engineer ${timeBlock.engineer}"]`
         )
       ).toHaveText(timeBlock.engineer);
     }
@@ -75,7 +75,7 @@ test.describe("Check Company Service Shifts", () => {
       unassignedTimeBlock.locator('[aria-label="Hour 09:00"]')
     ).toHaveText("09:00 - 10:00");
     await expect(
-      unassignedTimeBlock.locator('[aria-label="Engineer Assigned ⚠"]')
+      unassignedTimeBlock.locator('[aria-label="Assigned Engineer ⚠"]')
     ).toHaveText("⚠");
   });
 });

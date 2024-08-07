@@ -37,6 +37,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.0.3",
     "jest": "^27.0.5",
+    "jest-junit": "^16.0.0",
     "postcss": "^8.4.40",
     "prettier": "^2.4.1",
     "start-server-and-test": "^2.0.5",

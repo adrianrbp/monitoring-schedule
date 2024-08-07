@@ -10,8 +10,10 @@ export default defineConfig({
   expect: {
     timeout: 5000,
   },
-  // reporter: [
-  //   ['list'],
-  //   ['html', { outputFile: 'e2e/test-results/report.html' }],
-  // ],
+  reporter: [
+    ["list"],
+    ["junit", { outputFile: "playwright-tests.xml" }],
+    ["html", { outputFolder: "playwright-report", open: "never" }],
+    //   ['html', { outputFile: 'e2e/test-results/report.html' }],
+  ],
 });

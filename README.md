@@ -26,17 +26,19 @@
 ### Componentes
 #### Endpoints - Gestion de Turnos (Shifts)
 - 1st Dropdown (Services)
-  - /api/company_services 
+  - GET /api/company_services 
 - 2nd Dropdown (Weeks)
-  - /api/company_services/:id/weeks 
+  - GET /api/company_services/:id/weeks 
 - Engineers Table
-  - /api/company_services/:id/engineers?week=YYYY-WW 
+  - GET /api/company_services/:id/engineers?week=YYYY-WW 
 - Shifts Table
-  - /api/company_services/:id/shifts?week=YYYY-WW
+  - GET /api/company_services/:id/shifts?week=YYYY-WW
 #### Endpoints - Gestion de Disponibilidad (Availability)
-- Los de gestion de turnos para el filtrado y llenado de semana
+- Dropdowns anteriores (gestion de turnos) para el filtrado y llenado de semana
+- Boton Editar Disponibilidad: Consultar Disponibilidad de ingenieros
+  - GET /api/company_services/:id/engineers/availability?week=YYYY-WW
 - Updates Engineer Availability 
-  - /api/company_services/:id/engineers/availability
+  - POST /api/company_services/:id/engineers/availability
     - week
     - availability (array)
       - engineer_id
@@ -99,3 +101,12 @@ docker-compose -f .devcontainer/docker-compose.yml up
 ```
 
 - navegar a 0.0.0.0:8080 para empezar a usar la app
+
+
+### Screenshots
+#### Ejecución
+![figma-1](./1-shift_management.png)
+
+#### Figma
+![figma-1](./shift-availability-management-figma.jpg)
+![figma-2](./shift-availability-management-figma-p2.jpg)

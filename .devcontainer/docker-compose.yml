@@ -1,5 +1,8 @@
+name: monitoring-schedule
+
 services:
   postgres:
+    container_name: monit-pg
     image: postgres:latest
     restart: unless-stopped
     environment:
@@ -10,8 +13,11 @@ services:
       - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
+    networks:
+      - backend-net
 
   rails:
+    container_name: monit-rails
     build:
       context: .
       dockerfile: ./rails-container/Dockerfile
@@ -22,6 +28,9 @@ services:
       DATABASE_NAME: monitoring_sys_development
     volumes:
       - ..:/workspace:cached
+    networks:
+      - frontend-net
+      - backend-net
     command: sleep infinity
     ports:
       - "3030:3030"
@@ -29,11 +38,14 @@ services:
       - postgres
 
   vue:
+    container_name: monit-vue
     build:
       context: .
       dockerfile: ./vue-container/Dockerfile
     volumes:
       - ..:/workspace:cached
+    networks:
+      - frontend-net
     # command: sh -c "yarn install && yarn serve"
     command: sleep infinity
     ports:
@@ -42,14 +54,21 @@ services:
       - rails
 
   playwright:
+    container_name: monit-playwright
     image: mcr.microsoft.com/playwright:v1.39.0-jammy  # Use the latest version
     working_dir: /workspace/frontend
     user: pwuser
     volumes:
       - ..:/workspace:cached
+    networks:
+      - frontend-net
     depends_on:
       - vue
     command: sh -c "yarn install && npx playwright install && tail -f /dev/null"
 
 volumes:
   postgres-data:
+
+networks:
+  backend-net: {}
+  frontend-net: {}

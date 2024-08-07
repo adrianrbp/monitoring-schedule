@@ -47,6 +47,7 @@ export interface ShiftsResponse {
 
 export interface Shift {
   day: string;
+  dayLabel: string;
   time_blocks: Timeblock[];
 }
 
@@ -57,15 +58,42 @@ export interface Timeblock {
   engineer: Engineer | null;
 }
 
+export interface Engineer {
+  id: number;
+  name: string;
+  color: string;
+  hours_assigned?: number;
+}
+
 export interface EngineersResponse {
   data: Engineer[];
   status: number;
   statusText: string;
 }
 
-export interface Engineer {
+export interface EngineerAvailability {
   id: number;
-  name: string;
-  color: string;
-  hours_assigned?: number;
+  available: boolean;
+}
+
+export interface TimeBlockAv {
+  time: string;
+  engineers: EngineerAvailability[];
+}
+
+export interface DayAvailability {
+  day: string;
+  dayLabel?: string;
+  times: TimeBlockAv[];
+}
+
+export interface AvailabilityResponse {
+  availability: DayAvailability[];
+  status: number;
+  statusText: string;
+}
+
+export interface AvailabilityPayload {
+  week: string;
+  availability: DayAvailability[];
 }
