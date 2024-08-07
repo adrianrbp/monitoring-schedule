@@ -58,7 +58,6 @@ const isEngineerAvailable = (day: string, time: string, engineerId: number) => {
 
 const updateAvailability = (day: string, time: string, engineerId: number) => {
   const engineerData = getEngineerAvailability(day, time, engineerId);
-  console.log(engineerData);
   if (engineerData) {
     engineerData.available = !engineerData.available; // Toggle availability
   }
