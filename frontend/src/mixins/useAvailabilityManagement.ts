@@ -41,21 +41,15 @@ export function useAvailabilityManagement(
   });
 
   const saveAvailability = async () => {
-    console.log("saved");
     if (!selectedService.value || !selectedWeek.value) {
-      console.log("not defined values");
-
       statusMessage.value = "Service and week must be selected";
       return;
     }
-    console.log("defined values");
 
     const availabilityPayload = {
       week: selectedWeek.value,
       availability: availabilities.value,
     };
-
-    console.log(availabilityPayload);
 
     try {
       statusMessage.value = await storeAvailabilities(
@@ -74,13 +68,10 @@ export function useAvailabilityManagement(
 
     if (showAvailabilityTable.value && availabilities.value.length > 0) {
       // fetchAvailability();
-      console.log("fetched from toggle");
     } else if (
       !showAvailabilityTable.value &&
       availabilities.value.length > 0
     ) {
-      console.log("saved from toggle");
-      console.log(availabilities.value);
       saveAvailability();
     }
   };
