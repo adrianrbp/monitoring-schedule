@@ -46,7 +46,13 @@ jobs:
       - name: Run Jest tests
         run: |
           cd frontend
-          yarn test:unit
+          yarn test:unit --ci --reporters=default --reporters=jest-junit
+
+      - name: Upload Jest Test Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: jest-test-report
+          path: frontend/test-reports/junit.xml
 
       # - name: Start Rails server
       #   run: |
