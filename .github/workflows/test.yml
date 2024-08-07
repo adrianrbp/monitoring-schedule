@@ -119,5 +119,5 @@ jobs:
         with:
           name: Playwright Tests
           path: frontend/playwright-tests.xml
-          reporter: junit
+          reporter: java-junit
 
