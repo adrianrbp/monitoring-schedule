@@ -23,7 +23,7 @@ jobs:
       - name: Run Rails tests
         run: |
           cd backend
-          bin/rails test
+          bundle exec rspec
 
   frontend:
     name: 'Vue Frontend Tests'
