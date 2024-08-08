@@ -6,6 +6,22 @@ jobs:
   backend:
     name: 'Rails API Tests'
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: postgres_user
+          POSTGRES_PASSWORD: testpassword
+          POSTGRES_DB: monitoring_sys_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -18,12 +34,26 @@ jobs:
       - name: Install dependencies
         run: |
           cd backend
+          gem install bundler
           bundle install
 
-      - name: Run Rails tests
+      - name: Set up environment variables
+        run: |
+          echo "DATABASE_HOST=localhost" >> $GITHUB_ENV
+          echo "DATABASE_USER=postgres_user" >> $GITHUB_ENV
+          echo "DATABASE_PASSWORD=testpassword" >> $GITHUB_ENV
+
+      - name: Set up database
         run: |
           cd backend
-          bundle exec rspec
+          RAILS_ENV=test rails db:create
+          RAILS_ENV=test rails db:migrate
+          RAILS_ENV=test rails db:seed
+
+      - name: Run RSpec tests
+        run: |
+          cd backend
+          RAILS_ENV=test bundle exec rspec
 
   frontend:
     name: 'Vue Frontend Tests'

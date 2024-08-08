@@ -77,12 +77,13 @@
       - abrir command palette: ctrl + shift + p
       - Seleccionar: Reopen in container
       - Seleccionar: "Rails API Container"
-      - Dentro ejecutar: `rails s`
+      - Dentro ejecutar: `rails s -b 0.0.0.0`
   - Ejecutar el contenedor Vue Container:
       - abrir command palette: ctrl + shift + p
       - Seleccionar: Reopen in container
       - Seleccionar: "Vue Container"
-      - Dentro ejecutar: `yarn dev`
+      - Dentro ejecutar mocked: `yarn dev`
+      - Dentro ejecutar api: `yarn serve:api`
   - navegar a 0.0.0.0:8080 para empezar a usar la app
 - Ejecutar tests e2e:
   ```bash
