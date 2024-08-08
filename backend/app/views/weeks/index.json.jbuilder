@@ -1,9 +1,9 @@
 json.data do
   json.past do
-    json.info "past"
+    json.array! @weeks_past, partial: "weeks/week", as: :week
   end
   json.future do
-    json.info "future"
+    json.array! @weeks_future, partial: "weeks/week", as: :week
   end
 end
 

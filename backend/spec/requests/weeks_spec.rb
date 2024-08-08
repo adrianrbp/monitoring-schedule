@@ -29,6 +29,20 @@ RSpec.describe "Weeks", type: :request do
       expect(json_response['statusText']).to eq("OK")
     end
 
+    it 'returns the correct weeks data' do
+      json_response = JSON.parse(response.body)
+
+      expect(json_response['data']['future']).to be_an(Array)
+
+      # Check the format of the weeks
+      expect(json_response['data']['future']).to all(include('id', 'label', 'start_date', 'end_date'))
+
+      week_identifier_format = /^\d{4}-\d{2}$/ #YYYY-WWW
+      expect(json_response['data']['future']).to all(have_key('id'))
+      expect(json_response['data']['future']).to all(
+        include('id' => match(/^\d{4}-\d{2}$/))
+      )
+    end
   end
 
 end
