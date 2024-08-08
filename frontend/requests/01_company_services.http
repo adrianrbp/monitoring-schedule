@@ -4,7 +4,7 @@ GET http://rails:3000/company_services HTTP/1.1
 Accept: application/json
 
 ### 2nd Dropdown - Get Weeks
-GET http://rails:3000/company_services/:id/weeks HTTP/1.1
+GET http://rails:3000/company_services/1/weeks HTTP/1.1
 Accept: application/json
 
 
@@ -24,3 +24,7 @@ Accept: application/json
 POST http://rails:3000/company_services/:id/engineers/availability HTTP/1.1
 Accept: application/json
 
+
+### error handling
+GET http://rails:3000/abc HTTP/1.1
+Accept: application/json

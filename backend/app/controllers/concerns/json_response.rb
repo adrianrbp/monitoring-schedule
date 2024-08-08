@@ -7,10 +7,11 @@ module JsonResponse
 
     before_action :ensure_json_request
     before_action :set_default_format
-  end
 
-  def render_not_found
-    render json: { error: 'Not Found' }, status: :not_found
+    def render_not_found
+      render json: { error: 'Not Found' }, status: :not_found
+    end
+
   end
 
   private
