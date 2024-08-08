@@ -1,0 +1,26 @@
+## Endpoints - Gestion de Turnos (Shifts)
+### 1st Dropdown - Get Company Services
+GET http://rails:3000/company_services HTTP/1.1
+Accept: application/json
+
+### 2nd Dropdown - Get Weeks
+GET http://rails:3000/company_services/:id/weeks HTTP/1.1
+Accept: application/json
+
+
+### Engineers Table
+GET http://rails:3000/company_services/:id/engineers?week=YYYY-WW HTTP/1.1
+Accept: application/json
+### Shifts Table
+GET http://rails:3000/company_services/:id/shifts?week=YYYY-WW HTTP/1.1
+Accept: application/json
+
+
+## Endpoints - Gestion de Disponibilidad (Availability)
+### Boton Editar Disponibilidad: Consultar Disponibilidad de ingenieros
+GET http://rails:3000/company_services/:id/engineers/availability?week=YYYY-WW HTTP/1.1
+Accept: application/json
+### Updates Engineer Availability
+POST http://rails:3000/company_services/:id/engineers/availability HTTP/1.1
+Accept: application/json
+
