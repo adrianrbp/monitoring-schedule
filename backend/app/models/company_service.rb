@@ -10,4 +10,6 @@
 #  updated_at          :datetime         not null
 #
 class CompanyService < ApplicationRecord
+  has_many :company_service_engineers, dependent: :destroy
+  has_many :engineers, through: :company_service_engineers
 end
