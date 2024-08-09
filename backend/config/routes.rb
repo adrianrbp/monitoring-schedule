@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :company_services, only: [:index], constraints: { format: 'json' } do
     resources :weeks, only: [:index]
+    resources :engineers, only: [:index], module: :company_services
   end
 
   get "up" => "rails/health#show", as: :rails_health_check
