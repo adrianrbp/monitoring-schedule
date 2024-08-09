@@ -18,7 +18,12 @@ export const fetchCompanyServices = async (): Promise<CompanyService[]> => {
     });
   } else {
     try {
-      const response = await fetch("/api/company_services");
+      // const response = await fetch("/api/company_services");
+      const response = await fetch("/api/company_services", {
+        headers: {
+          Accept: "application/json",
+        },
+      });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -45,7 +50,11 @@ export const requestWeeks = async (serviceId: number): Promise<Weeks> => {
     });
   } else {
     try {
-      const response = await fetch(`/api/company_services/${serviceId}/weeks`);
+      const response = await fetch(`/api/company_services/${serviceId}/weeks`, {
+        headers: {
+          Accept: "application/json",
+        },
+      });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -76,7 +85,12 @@ export const requestShifts = async (
   } else {
     try {
       const response = await fetch(
-        `/api/company_services/${serviceId}/shifts?week=${weekId}`
+        `/api/company_services/${serviceId}/shifts?week=${weekId}`,
+        {
+          headers: {
+            Accept: "application/json",
+          },
+        }
       );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -108,7 +122,12 @@ export const requestEngineers = async (
   } else {
     try {
       const response = await fetch(
-        `/api/company_services/${serviceId}/engineers?week=${weekId}`
+        `/api/company_services/${serviceId}/engineers?week=${weekId}`,
+        {
+          headers: {
+            Accept: "application/json",
+          },
+        }
       );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

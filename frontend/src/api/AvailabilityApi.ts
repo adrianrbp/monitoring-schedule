@@ -20,7 +20,12 @@ export const requestAvailabilities = async (
   } else {
     try {
       const response = await fetch(
-        `/api/company_services/${serviceId}//engineers/availability?week=${weekId}`
+        `/api/company_services/${serviceId}//engineers/availability?week=${weekId}`,
+        {
+          headers: {
+            Accept: "application/json",
+          },
+        }
       );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -49,6 +54,7 @@ export const storeAvailabilities = async (
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Accept: "application/json",
           },
           body: JSON.stringify(availabilityPayload),
         }

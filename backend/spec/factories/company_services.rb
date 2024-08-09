@@ -11,8 +11,8 @@
 #
 FactoryBot.define do
   factory :company_service do
-    name { "MyString" }
-    contract_start_date { "2024-08-02 03:19:06" }
-    contract_end_date { "2024-08-02 03:19:06" }
+    name { Faker::Company.unique.name }
+    contract_start_date { Faker::Date.backward(days: 30) }
+    contract_end_date { Faker::Date.forward(days: 30) }
   end
 end
