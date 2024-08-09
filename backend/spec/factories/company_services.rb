@@ -12,7 +12,7 @@
 FactoryBot.define do
   factory :company_service do
     name { Faker::Company.unique.name }
-    contract_start_date { Faker::Date.backward(days: 30) }
-    contract_end_date { Faker::Date.forward(days: 30) }
+    contract_start_date { Faker::Date.between(from: '2024-01-01', to: '2024-12-31') }
+    contract_end_date { Faker::Date.between(from: '2024-01-01', to: '2024-12-31') }
   end
 end

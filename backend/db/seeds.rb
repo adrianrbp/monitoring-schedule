@@ -1,9 +1,10 @@
 require 'faker'
 
-10.times do
-  company_service = CompanyService.create(
-    name: Faker::Company.unique.name,
-    contract_start_date: Faker::Date.backward(days: 30),
-    contract_end_date: Faker::Date.forward(days: 30)
-  )
-end
+CompanyService.destroy_all
+Engineer.destroy_all
+
+10.times { FactoryBot.create(:company_service) }
+puts "10 Company Services Created"
+
+10.times { FactoryBot.create(:engineer) }
+puts "10 Engineers Created"
