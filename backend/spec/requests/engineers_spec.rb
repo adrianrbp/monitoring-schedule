@@ -21,6 +21,22 @@ RSpec.describe "CompanyServices::Engineers", type: :request do
           as: :json
       expect(response).to be_successful
     end
+    it 'returns the correct JSON structure' do
+      get company_service_engineers_url(company_service_id: company_service.id, week: week),
+          headers: valid_headers,
+          as: :json
+      json_response = JSON.parse(response.body)
+
+      expect(json_response).to have_key('data')
+      expect(json_response['data'].length).to eq(3)
+      expect(json_response['data']).to match_array([
+        { 'id' => @engineer1.id, 'name' => @engineer1.name, 'color' => @engineer1.color },
+        { 'id' => @engineer2.id, 'name' => @engineer2.name, 'color' => @engineer2.color },
+        { 'id' => @engineer3.id, 'name' => @engineer3.name, 'color' => @engineer3.color }
+      ])
+      expect(json_response).to have_key('status')
+      expect(json_response).to have_key('statusText')
+    end
   end
 
 end
