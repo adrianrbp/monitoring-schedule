@@ -83,7 +83,7 @@
       - Seleccionar: Reopen in container
       - Seleccionar: "Vue Container"
       - Dentro ejecutar mocked: `yarn dev`
-      - Dentro ejecutar api: `yarn serve:api`
+      - (alternativa) Dentro ejecutar api: `yarn serve:api`
   - navegar a 0.0.0.0:8080 para empezar a usar la app
 - Ejecutar tests e2e:
   ```bash
