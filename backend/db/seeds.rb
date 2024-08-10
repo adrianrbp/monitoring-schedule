@@ -18,6 +18,6 @@ CompanyService.all.each do |company_service|
 
   # Create shifts for the the company
   ["2024-32", "2024-33", "2024-34"].each do |week|
-    create(:shift, :for_week, week: week, company_service: company_service)
+    FactoryBot.create(:shift, :for_week, week: week, company_service: company_service)
   end
 end
