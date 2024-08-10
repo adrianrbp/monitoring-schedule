@@ -1,4 +1,3 @@
-# spec/requests/errors_spec.rb
 require 'rails_helper'
 
 RSpec.describe "Error Handling", type: :request do

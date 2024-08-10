@@ -12,4 +12,5 @@
 class CompanyService < ApplicationRecord
   has_many :company_service_engineers, dependent: :destroy
   has_many :engineers, through: :company_service_engineers
+  has_many :shifts, dependent: :destroy
 end

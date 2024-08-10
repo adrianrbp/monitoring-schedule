@@ -1,0 +1,1 @@
+json.extract! shift, :day, :dayLabel, :time_blocks

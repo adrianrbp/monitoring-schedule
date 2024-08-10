@@ -15,7 +15,7 @@ FactoryBot.define do
     contract_start_date { Faker::Date.between(from: '2024-08-01', to: '2024-08-31').beginning_of_week }
     contract_end_date { Faker::Date.between(
       from: contract_start_date,
-      to: '2024-12-31').end_of_week
+      to: '2024-10-31').end_of_week
     }
   end
 end

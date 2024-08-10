@@ -1,20 +1,23 @@
 require 'faker'
 
-CompanyServiceEngineer.destroy_all
-CompanyService.destroy_all
-Engineer.destroy_all
+10.times { FactoryBot.create(:company_service) }
+puts "10 Company Services Created"
 
-3.times do
-  company_service = FactoryBot.create(:company_service)
+10.times { FactoryBot.create(:engineer) }
+puts "10 Engineers Created"
 
-  # Create engineers and associate them with the company service
-  engineers = FactoryBot.create_list(:engineer, 3) # Creates 3 engineers
-  engineers.each do |engineer|
-    CompanyServiceEngineer.create!(
-      company_service: company_service,
-      engineer: engineer
-    )
+# Assign 3 random engineers to each CompanyService and create shifts
+CompanyService.all.each do |company_service|
+  # Select 3 random engineers
+  selected_engineers = Engineer.all.sample(3)
+
+  # Assign selected engineers to a CompanyService
+  selected_engineers.each do |engineer|
+    CompanyServiceEngineer.create!(company_service: company_service, engineer: engineer)
+  end
+
+  # Create shifts for the the company
+  ["2024-32", "2024-33", "2024-34"].each do |week|
+    create(:shift, :for_week, week: week, company_service: company_service)
   end
 end
-puts "3 Company Services Created"
-puts "9 Engineers Created"

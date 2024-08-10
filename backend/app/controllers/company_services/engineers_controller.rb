@@ -3,7 +3,6 @@ module CompanyServices
     # GET /engineers
     # GET /engineers.json
     def index
-      puts "REACH CONTROLLER"
       @engineers = Engineer.all
     end
   end
