@@ -1,43 +1,46 @@
 class WeekService
-
-  def self.generate_weeks_data(company_service_id)
+  def initialize(company_service_id)
     company_service = CompanyService.find(company_service_id)
-    start_date = company_service.contract_start_date.to_date
-    end_date = company_service.contract_end_date.to_date
+    @start_date = company_service.contract_start_date.to_date
+    @end_date = company_service.contract_end_date.to_date
+  end
 
+  def call
     current_date = Date.today
     past_weeks = []
     future_weeks = []
 
-    if date_in_contract?(start_date, end_date, current_date)
-      past_weeks = fetch_past(current_date, start_date)
-      future_weeks = fetch_future(current_date, end_date)
+    # binding.pry
+    if date_in_contract?(@start_date, @end_date, current_date)
+      past_weeks = fetch_past(current_date, @start_date)
+      future_weeks = fetch_future(current_date, @end_date)
     else
-      past_weeks = fetch_past(end_date, start_date)
+      past_weeks = fetch_past(@end_date, @start_date)
+      future_weeks = fetch_future(@start_date, @end_date)
     end
     { past: past_weeks, future: future_weeks }
   end
 
-  ## REFACTOR: make private, just validate based on 2 contracts
-  def self.date_in_contract?(start_date, end_date, date)
+  private
+  def date_in_contract?(start_date, end_date, date)
     # service.contract_start_date <= date && date <= service.contract_end_date
     (start_date..end_date).cover?(date)
   end
 
-  def self.week_identifier(date)
-    "#{date.year}-#{date.strftime('%W')}"
+  def week_identifier(date)
+    "#{date.year}-#{date.cweek}"
   end
 
-  def self.one_week(week_start, week_end)
+  def one_week(week_start, week_end)
     {
       id: week_identifier(week_start),
-      label: "Semana #{week_start.strftime('%W')} del #{week_start.year}",
+      label: "Semana #{week_start.cweek} del #{week_start.year}",
       start_date: week_start.strftime('%d/%m/%Y'),
       end_date: week_end.strftime('%d/%m/%Y')
     }
   end
 
-  def self.fetch_past(date, start_date_limit)
+  def fetch_past(date, start_date_limit)
     first_monday = start_date_limit.beginning_of_week
     weeks = []
     mondays = [date.beginning_of_week]
@@ -50,7 +53,7 @@ class WeekService
     weeks
   end
 
-  def self.fetch_future(date, end_date_limit)
+  def fetch_future(date, end_date_limit)
     weeks = []
     week_start = date.beginning_of_week
     5.times do
