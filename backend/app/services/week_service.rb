@@ -12,12 +12,12 @@ class WeekService
 
     # binding.pry
     if date_in_contract?(@start_date, @end_date, current_date)
-      past_weeks = fetch_past(current_date, @start_date)
+      past_weeks = fetch_past(@start_date, current_date)
       future_weeks = fetch_future(current_date, @end_date)
     elsif current_date < @start_date
       future_weeks = fetch_future(@start_date, @end_date, offset: true)
     elsif current_date > @end_date
-      past_weeks = fetch_past(@end_date, @start_date)
+      past_weeks = fetch_past(@start_date, @end_date, offset: true )
     end
     { past: past_weeks, future: future_weeks }
   end
@@ -41,9 +41,10 @@ class WeekService
     }
   end
 
-  def fetch_past(end_date, start_date_limit)
+  def fetch_past(start_date_limit, end_date, offset: false)
     first_monday = start_date_limit.beginning_of_week
     weeks = []
+    end_date = end_date.next_week if offset # include current if offset
     mondays = [end_date.beginning_of_week]
     while mondays.last > first_monday
       week_start = mondays.last.last_week
