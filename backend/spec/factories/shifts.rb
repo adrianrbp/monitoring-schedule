@@ -24,21 +24,26 @@ FactoryBot.define do
       (Time.parse(start_time) + duration_in_hours.hours).strftime("%H:%M")
     end
 
-    trait :for_week do |week|
+    trait :for_week do
+      transient do
+        week { "#{Date.today.year}-#{Date.today.cweek}" }
+      end
+
       after(:create) do |shift, evaluator|
         week_days = %w[Monday Tuesday Wednesday Thursday Friday Saturday Sunday]
         start_time = Time.parse("09:00")
 
         week_days.each do |day|
-          # Create shifts for the entire week
-          shift_for_day = create(:shift,
-              company_service: shift.company_service,
-              week: week,
-              day: day,
-              start_time: start_time.strftime("%H:%M"),
-              end_time: (start_time + rand(3..10).hours).strftime("%H:%M"))
+          create(:shift,
+                 company_service: shift.company_service,
+                 week: evaluator.week,
+                 day: day,
+                 start_time: start_time.strftime("%H:%M"),
+                 end_time: (start_time + rand(3..10).hours).strftime("%H:%M"))
+          start_time += 1.day # Move to the next day for the next iteration
         end
       end
     end
+
   end
 end
