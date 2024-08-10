@@ -12,6 +12,11 @@ RSpec.describe "CompanyServices::Engineers", type: :request do
     @engineer1 = create(:engineer, name: "Engineer 1", color: "#a5b4fc")
     @engineer2 = create(:engineer, name: "Engineer 2", color: "#5eead4")
     @engineer3 = create(:engineer, name: "Engineer 3", color: "#bef264")
+
+    CompanyServiceEngineer.create!(company_service: company_service, engineer: @engineer1)
+    CompanyServiceEngineer.create!(company_service: company_service, engineer: @engineer2)
+    CompanyServiceEngineer.create!(company_service: company_service, engineer: @engineer3)
+
   end
 
   describe "GET /company_services/:company_service_id/engineers?week=YYYY-WW" do
@@ -28,6 +33,7 @@ RSpec.describe "CompanyServices::Engineers", type: :request do
       json_response = JSON.parse(response.body)
 
       expect(json_response).to have_key('data')
+      puts json_response
       expect(json_response['data'].length).to eq(3)
       expect(json_response['data']).to match_array([
         { 'id' => @engineer1.id, 'name' => @engineer1.name, 'color' => @engineer1.color },

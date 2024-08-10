@@ -1,9 +1,9 @@
 module CompanyServices
   class EngineersController < ApplicationController
-    # GET /engineers
-    # GET /engineers.json
     def index
-      @engineers = Engineer.all
+      company_service = CompanyService.find(params[:company_service_id])
+      week = params[:week]
+      @engineers = company_service.engineers
     end
   end
 end
