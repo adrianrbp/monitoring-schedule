@@ -50,7 +50,7 @@ RSpec.describe WeekService, type: :service do
       end
     end
 
-    context 'Contract Range: 15Jul -> 15 Set 2024 - W29-W37' do
+    context 'Contract Range: 15Jul -> 15 Set 2024 - W29-W37 = 8 weeks' do
       describe 'Past Weeks' do
         it 'returns all past weeks until the contract start date' do
           result = service.call
@@ -78,6 +78,7 @@ RSpec.describe WeekService, type: :service do
           ])
         end
       end
+
       describe 'Future Weeks' do
         it 'returns the correct 5 future weeks based on end_date_limit' do
           result = service.call
@@ -161,6 +162,15 @@ RSpec.describe WeekService, type: :service do
               end_date: "15/09/2024"
             }
           ])
+        end
+        it 'returns all weeks that enter on 5 weeks range when the current date a bit far in future' do
+          # go to the past - contract dates still in future
+          allow(Date).to receive(:today).and_return(Date.new(2024, 07, 1))
+          result = service.call
+          past_weeks = result[:past]
+          future_weeks = result[:future]
+          expect(past_weeks.count).to eq(0)
+          expect(future_weeks.count).to eq(3)
         end
       end
     end

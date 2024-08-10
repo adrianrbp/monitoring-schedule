@@ -14,9 +14,10 @@ class WeekService
     if date_in_contract?(@start_date, @end_date, current_date)
       past_weeks = fetch_past(current_date, @start_date)
       future_weeks = fetch_future(current_date, @end_date)
-    else
+    elsif current_date < @start_date
+      future_weeks = fetch_future(@start_date, @end_date, offset: true)
+    elsif current_date > @end_date
       past_weeks = fetch_past(@end_date, @start_date)
-      future_weeks = fetch_future(@start_date, @end_date)
     end
     { past: past_weeks, future: future_weeks }
   end
@@ -40,10 +41,10 @@ class WeekService
     }
   end
 
-  def fetch_past(date, start_date_limit)
+  def fetch_past(end_date, start_date_limit)
     first_monday = start_date_limit.beginning_of_week
     weeks = []
-    mondays = [date.beginning_of_week]
+    mondays = [end_date.beginning_of_week]
     while mondays.last > first_monday
       week_start = mondays.last.last_week
       week_end = week_start.end_of_week
@@ -53,15 +54,18 @@ class WeekService
     weeks
   end
 
-  def fetch_future(date, end_date_limit)
+  def fetch_future(start_date, end_date_limit, offset: false)
     weeks = []
-    week_start = date.beginning_of_week
-    5.times do
+    week_start = offset ? Date.today.beginning_of_week : start_date.beginning_of_week
+    weeks_limit = 5
+    while weeks.count < weeks_limit && week_start <= end_date_limit
+      if offset && week_start < start_date.beginning_of_week
+        week_start = week_start.next_week
+        weeks_limit -= 1
+        next
+      end
       week_end = week_start.end_of_week
-
-      break if week_start > end_date_limit
       weeks << one_week(week_start, week_end)
-
       week_start = week_start.next_week
     end
 
