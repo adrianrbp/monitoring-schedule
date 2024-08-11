@@ -1,14 +1,14 @@
 <template>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mx-auto mt-6">
     <div
-      v-for="shift in shifts"
+      v-for="shift in allShiftsTimeBlocks"
       :key="shift.day"
-      class="flex border rounded-lg m-x-2 p-4 shadow-lg bg-white"
+      class="relative overflow-x-auto"
       :aria-label="`Day ${shift.dayLabel}`"
       role="table"
     >
-      <table class="table-auto divide-y divide-gray-200">
-        <thead>
+      <table class="w-full text-sm text-left rtl:text-right">
+        <thead class="text-xs uppercase bg-gray-50">
           <tr>
             <th
               :colspan="showAvailabilityTable ? 1 : 2"
@@ -76,7 +76,8 @@ import AvailabilityTable from "@/components/AvailabilityManagement/AvailabilityT
 
 const shiftManagement = inject("shiftManagement");
 
-const { shifts, getEngineerColor, engineers } = shiftManagement;
+const { shifts, allShiftsTimeBlocks, getEngineerColor, engineers } =
+  shiftManagement;
 
 const availabilityManagement = inject("availabilityManagement");
 
