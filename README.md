@@ -171,6 +171,8 @@ docker-compose -f .devcontainer/docker-compose.yml up
 ### Screenshots
 #### Ejecución
 ![figma-1](./1-shift_management.png)
+![figma-2](./2-availability_management.png)
+
 
 #### Figma
 ![figma-1](./shift-availability-management-figma.jpg)
