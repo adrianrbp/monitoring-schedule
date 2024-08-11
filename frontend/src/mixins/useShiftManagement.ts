@@ -62,6 +62,7 @@ export function useShiftManagement() {
           selectedWeek.value
         );
         shifts.value = data;
+        expandAllShiftsTimeBlocks();
         errorMessage.value = null;
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
@@ -124,6 +125,41 @@ export function useShiftManagement() {
 
   const getEngineerColor = (engineer: Engineer | null) => {
     return engineer ? engineer.color : "";
+  };
+
+  // Utility function to generate time blocks
+  function generateTimeBlocks(start: string, end: string) {
+    const startTime = new Date(`1970-01-01T${start}:00`);
+    const endTime = new Date(`1970-01-01T${end}:00`);
+    const blocks = [];
+
+    while (startTime < endTime) {
+      const nextHour = new Date(startTime.getTime() + 60 * 60 * 1000);
+      blocks.push({
+        start_time: startTime.toTimeString().substring(0, 5),
+        end_time: nextHour.toTimeString().substring(0, 5),
+      });
+      startTime.setHours(startTime.getHours() + 1);
+    }
+
+    return blocks;
+  }
+
+  const expandAllShiftsTimeBlocks = () => {
+    if (!shifts.value || !Array.isArray(shifts.value)) {
+      return [];
+    }
+    return shifts.value.map((shift) => ({
+      ...shift,
+      time_blocks: shift.time_blocks.flatMap((timeBlock) =>
+        generateTimeBlocks(timeBlock.start_time, timeBlock.end_time).map(
+          (block) => ({
+            ...block,
+            engineer: timeBlock.engineer,
+          })
+        )
+      ),
+    }));
   };
 
   return {
