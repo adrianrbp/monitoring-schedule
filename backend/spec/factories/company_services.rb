@@ -12,7 +12,7 @@
 FactoryBot.define do
   factory :company_service do
     name { Faker::Company.unique.name }
-    contract_start_date { Faker::Date.between(from: '2024-08-01', to: '2024-08-31').beginning_of_week }
+    contract_start_date { Faker::Date.between(from: '2024-07-01', to: '2024-08-31').beginning_of_week }
     contract_end_date { Faker::Date.between(
       from: contract_start_date,
       to: '2024-10-31').end_of_week

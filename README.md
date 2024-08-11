@@ -26,17 +26,22 @@
 ### Componentes
 #### Endpoints - Gestion de Turnos (Shifts)
 - 1st Dropdown (Services)
-  - GET /api/company_services 
+  - GET /api/company_services
+  - [example response](frontend/src/mock/company_services.json)
 - 2nd Dropdown (Weeks)
   - GET /api/company_services/:id/weeks 
+  - [example response](frontend/src/mock/weeks_service_a.json)
 - Engineers Table
   - GET /api/company_services/:id/engineers?week=YYYY-WW 
+  - [example response](frontend/src/mock/engineers_a_w1.json)
 - Shifts Table
   - GET /api/company_services/:id/shifts?week=YYYY-WW
+  - [example response](frontend/src/mock/shifts_a_w1.json)
 #### Endpoints - Gestion de Disponibilidad (Availability)
 - Dropdowns anteriores (gestion de turnos) para el filtrado y llenado de semana
 - Boton Editar Disponibilidad: Consultar Disponibilidad de ingenieros
   - GET /api/company_services/:id/engineers/availability?week=YYYY-WW
+  - [example response](frontend/src/mock/eng_availability_a_w1.json.json)
 - Updates Engineer Availability 
   - POST /api/company_services/:id/engineers/availability
     - week
@@ -51,12 +56,66 @@
 
 #### Modelos
 1. Servicios monitoreados
-  - Bloques de 1h
-  - Horario establecido (grupo de bloques)
-2. Semana
-3. Engineer
-4. Turno (bloques de 1 hora)
-5. Asignacion (Relacion Ingeniero - Hora)
+  - Contrato: Fechas Establecidas
+2. Engineer
+3. CompanyServiceEngineer
+  - Asignar 3 ingenieros encargados del servicio durante el contrato.
+4. Shift (Turno) - bloques de 1 hora
+  - Contrato: Horas por dia de semana establecidas (grupo de bloques)
+5. EngineerShift
+  - Bloque asignado a ingeniero
+6. Availability (Disponibilidad) - Must: engineer
+
+#### Modelos - Instancias Ejemplo
+1. CompanyService
+  id: 1
+  name: "Service A"
+	contract_start_date: "2024-08-01"
+  contract_end_date: "2024-08-31"
+
+2. Engineer
+  id: 1
+  name:"Alice Smith"
+  color:"Bob Johnson"
+
+3. Shift
+	company_service:1
+  engineer:(sin asignar)
+	week:"2024-32"
+  day:"Monday"
+  start_time:"2024-08-07 09:00:00"
+  end_time:"2024-08-07 10:00:00"
+  
+4. Availability
+	engineer:1
+  week:"2024-32"
+  day:"Monday"
+  start_time:"2024-08-07 09:00:00"
+  end_time:"2024-08-07 10:00:00"
+  available:true
+
+#### Modelos - Instancias Factory Bot
+```ruby
+# 1. CompanyService
+FactoryBot.attributes_for :company_service
+=> {:name=>"Farrell, Mohr and Haley", :contract_start_date=>Thu, 18 Jul 2024, :contract_end_date=>Tue, 20 Aug 2024}
+
+# 2. Engineer
+FactoryBot.attributes_for :engineer
+=> {:name=>"Russell Hermann", :color=>"#0c0d0d"}
+
+# 3. CompanyServiceEngineer
+#FactoryBot.attributes_for :company_service_engineer
+
+# 4. Shift
+FactoryBot.attributes_for :shift
+=> {:week=>"2024-32", :day=>"Tuesday", :start_time=>"13:00", :end_time=>"18:00"}
+# 5. EngineerShift
+
+# 6. Availability
+FactoryBot.attributes_for :availability
+
+```
 
 #### Arquitectura Frontend (Grafica Figma)
 - View
@@ -64,6 +123,7 @@
     - provider: useShiftManagement
       - CompanyServiceApi.ts
 #### Arquitectura Backend (Grafica Figma)
+
 
 ### Ejecución
 #### Ambiente de desarrollo
@@ -77,7 +137,11 @@
       - abrir command palette: ctrl + shift + p
       - Seleccionar: Reopen in container
       - Seleccionar: "Rails API Container"
-      - Dentro ejecutar: `rails s -b 0.0.0.0`
+      - Dentro ejecutar: 
+        ```bash
+        rails db:setup
+        rails s -b 0.0.0.0
+        ```
   - Ejecutar el contenedor Vue Container:
       - abrir command palette: ctrl + shift + p
       - Seleccionar: Reopen in container
