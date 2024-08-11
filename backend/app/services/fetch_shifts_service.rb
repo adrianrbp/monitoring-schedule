@@ -17,17 +17,21 @@ class FetchShiftsService
   private
 
   def shifts_by_day
+    # "Monday" => [shifts]
     @company_service.shifts
-        .where(week: @week)
-        .order(:day, :start_time)
+        .where(week: @company_service.contract_start_week)
         .group_by(&:day)
   end
 
   def formatted_day_label(day)
+    current_year = Date.today.year
+    week_number = @week.split('-').last.to_i
+    day_index = Date::DAYNAMES.index(day.capitalize)
+    day_index = day_index == 0 ? 7 : day_index
     date = Date.commercial(
-      Date.today.year,
-      @week.split('-').last.to_i,
-      Date::DAYNAMES.index(day.capitalize)
+      current_year,
+      week_number,
+      day_index
     )
     # I18n.l(date, format: "%A %d de %B", locale: I18n.locale)
     I18n.l(date, format: :long, locale: :es)

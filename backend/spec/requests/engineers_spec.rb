@@ -33,7 +33,6 @@ RSpec.describe "CompanyServices::Engineers", type: :request do
       json_response = JSON.parse(response.body)
 
       expect(json_response).to have_key('data')
-      puts json_response
       expect(json_response['data'].length).to eq(3)
       expect(json_response['data']).to match_array([
         { 'id' => @engineer1.id, 'name' => @engineer1.name, 'color' => @engineer1.color },

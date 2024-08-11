@@ -15,9 +15,21 @@ CompanyService.all.each do |company_service|
   selected_engineers.each do |engineer|
     CompanyServiceEngineer.create!(company_service: company_service, engineer: engineer)
   end
+  puts "Assigned 3 Engineers to #{company_service.name}"
 
-  # Create shifts for the the company
-  ["2024-32", "2024-33", "2024-34"].each do |week|
-    FactoryBot.create(:shift, :for_week, week: week, company_service: company_service)
+  puts "Get 1st week of #{company_service.name}"
+  # Get the start and end weeks from the company_service
+  start_week = company_service.contract_start_week
+  # end_week = company_service.contract_end_week
+  puts "Create Shift Week for #{company_service.name}"
+  week_days = %w[Monday Tuesday Wednesday Thursday Friday Saturday Sunday]
+  start_time = Time.parse("09:00")
+
+  week_days.each do |day|
+    FactoryBot.create(:shift,
+            company_service: company_service,
+            week: start_week,
+            day: day)
+    start_time += 1.day
   end
 end

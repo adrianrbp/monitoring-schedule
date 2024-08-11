@@ -18,32 +18,24 @@ FactoryBot.define do
     week { "#{Date.today.year}-#{Date.today.cweek}" }
     day { %w[Monday Tuesday Wednesday Thursday Friday Saturday Sunday].sample }
 
-    start_time { Faker::Time.between(from: DateTime.now.beginning_of_day, to: DateTime.now.end_of_day).change(min: 0).strftime("%H:%M") }
+    start_time {
+      Faker::Time.between(
+        from: DateTime.now.change(hour: 04, min: 00),
+        to: DateTime.now.change(hour: 20, min: 00)
+      ).change(min: 0)
+        .strftime("%H:%M")
+    }
     end_time do
-      duration_in_hours = rand(3..10)
-      (Time.parse(start_time) + duration_in_hours.hours).strftime("%H:%M")
+      start_time_time = Time.parse(start_time)
+      plus_one_hour = start_time_time + 1.hour
+      midnight = start_time_time.end_of_day
+      end_time_range = (plus_one_hour)..(midnight)
+
+      Faker::Time.between(
+        from: end_time_range.first,
+        to: end_time_range.last
+      ).change(min: 0)
+        .strftime("%H:%M")
     end
-
-    trait :for_week do
-      transient do
-        week { "#{Date.today.year}-#{Date.today.cweek}" }
-      end
-
-      after(:create) do |shift, evaluator|
-        week_days = %w[Monday Tuesday Wednesday Thursday Friday Saturday Sunday]
-        start_time = Time.parse("09:00")
-
-        week_days.each do |day|
-          create(:shift,
-                 company_service: shift.company_service,
-                 week: evaluator.week,
-                 day: day,
-                 start_time: start_time.strftime("%H:%M"),
-                 end_time: (start_time + rand(3..10).hours).strftime("%H:%M"))
-          start_time += 1.day # Move to the next day for the next iteration
-        end
-      end
-    end
-
   end
 end

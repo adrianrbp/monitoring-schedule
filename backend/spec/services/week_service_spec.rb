@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe WeekService, type: :service do
   let(:company_service) { create(:company_service,
-      contract_start_date: '2024-07-15',
-      contract_end_date: '2024-09-15')
+      contract_start_date: Date.parse('2024-07-15'),
+      contract_end_date: Date.parse('2024-09-15'))
     }
   let(:service) { WeekService.new(company_service.id) }
 
