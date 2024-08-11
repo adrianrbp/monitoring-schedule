@@ -1,0 +1,1 @@
+json.extract! week, :id, :label, :start_date, :end_date
