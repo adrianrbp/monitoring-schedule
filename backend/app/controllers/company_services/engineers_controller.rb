@@ -5,5 +5,11 @@ module CompanyServices
       week = params[:week]
       @engineers = company_service.engineers
     end
+
+    def availability
+      company_service = params[:company_service_id]
+      week = params[:week]
+      @availability = EngineerAvailabilityService.new(company_service, week).call
+    end
   end
 end

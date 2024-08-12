@@ -21,4 +21,3 @@ FactoryBot.define do
     contract_end_week { "#{contract_end_date.year}-#{contract_end_date.cweek}" }
   end
 end
-# improve: company_service defien contract_start_week and end_week to avoid doing calculations on date level.
