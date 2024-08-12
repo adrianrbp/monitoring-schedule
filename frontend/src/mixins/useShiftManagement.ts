@@ -62,7 +62,6 @@ export function useShiftManagement() {
           selectedWeek.value
         );
         shifts.value = data;
-        expandAllShiftsTimeBlocks();
         errorMessage.value = null;
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
@@ -145,7 +144,8 @@ export function useShiftManagement() {
     return blocks;
   }
 
-  const expandAllShiftsTimeBlocks = () => {
+  const allShiftsTimeBlocks = computed(() => {
+    // const allShiftsTimeBlocks = () => {
     if (!shifts.value || !Array.isArray(shifts.value)) {
       return [];
     }
@@ -160,7 +160,7 @@ export function useShiftManagement() {
         )
       ),
     }));
-  };
+  });
 
   return {
     services,
@@ -174,6 +174,7 @@ export function useShiftManagement() {
     selectWeek,
     dateRange,
     shifts,
+    allShiftsTimeBlocks,
     engineers,
     getEngineerColor,
   };

@@ -76,8 +76,7 @@ import AvailabilityTable from "@/components/AvailabilityManagement/AvailabilityT
 
 const shiftManagement = inject("shiftManagement");
 
-const { shifts, allShiftsTimeBlocks, getEngineerColor, engineers } =
-  shiftManagement;
+const { allShiftsTimeBlocks, getEngineerColor, engineers } = shiftManagement;
 
 const availabilityManagement = inject("availabilityManagement");
 

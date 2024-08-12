@@ -92,7 +92,6 @@
   day:"Monday"
   start_time:"2024-08-07 09:00:00"
   end_time:"2024-08-07 10:00:00"
-  available:true
 
 #### Modelos - Instancias Factory Bot
 ```ruby

@@ -1,14 +1,14 @@
 import EngineersAvailabilityServiceAWeek1 from "@/mock/eng_availability_a_w1.json";
-import { AvailabilityPayload, DayAvailability } from "./types";
+import { AvailabilityPayload, EngineerAvailability } from "./types";
 
 const isMock = process.env.VUE_APP_USE_MOCK === "true";
 
 export const requestAvailabilities = async (
   serviceId: number,
   weekId: string
-): Promise<DayAvailability[]> => {
+): Promise<EngineerAvailability[]> => {
   if (isMock) {
-    return new Promise<DayAvailability[]>((resolve) => {
+    return new Promise<EngineerAvailability[]>((resolve) => {
       setTimeout(() => {
         if (serviceId === 1) {
           resolve(EngineersAvailabilityServiceAWeek1.data);

@@ -1,0 +1,20 @@
+{
+  "data": [
+    {
+      "engineer": 1,
+      "availability": [
+        { "day": "Monday", "availableTimes": [9, 10] },
+        { "day": "Tuesday", "availableTimes": [10, 11] }
+      ]
+    },
+    {
+      "engineer": 2,
+      "availability": [
+        { "day": "Monday", "availableTimes": [10, 11] },
+        { "day": "Wednesday", "availableTimes": [9, 11] }
+      ]
+    }
+  ],
+  "status": 200,
+  "statusText": "OK"
+}

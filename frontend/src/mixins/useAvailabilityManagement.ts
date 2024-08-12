@@ -1,5 +1,5 @@
 import { Ref, ref, watch } from "vue";
-import { DayAvailability } from "@/api/types";
+import { EngineerAvailability } from "@/api/types";
 import {
   requestAvailabilities,
   storeAvailabilities,
@@ -9,7 +9,7 @@ export function useAvailabilityManagement(
   selectedService: Ref<number | null>,
   selectedWeek: Ref<string | null>
 ) {
-  const availabilities = ref<DayAvailability[]>([]);
+  const availabilities = ref<EngineerAvailability[]>([]);
 
   const statusMessage = ref<string | null>(null);
 
@@ -21,7 +21,7 @@ export function useAvailabilityManagement(
       return;
     }
     try {
-      const data: DayAvailability[] = await requestAvailabilities(
+      const data: EngineerAvailability[] = await requestAvailabilities(
         selectedService.value,
         selectedWeek.value
       );

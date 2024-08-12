@@ -1,213 +1,27 @@
 {
   "data": [
     {
-      "day": "Monday",
-      "dayLabel": "Lunes 05 de Agosto",
-      "times": [
-        {
-          "time": "09:00",
-          "engineers": [
-            { "id": 1, "available": true },
-            { "id": 2, "available": false },
-            { "id": 3, "available": true }
-          ]
-        },
-        {
-          "time": "10:00",
-          "engineers": [
-            { "id": 1, "available": true },
-            { "id": 2, "available": true },
-            { "id": 3, "available": false }
-          ]
-        },
-        {
-          "time": "11:00",
-          "engineers": [
-            { "id": 1, "available": false },
-            { "id": 2, "available": true },
-            { "id": 3, "available": true }
-          ]
-        }
+      "engineer": 1,
+      "availability": [
+        { "day": "Monday", "availableTimes": [18, 19] },
+        { "day": "Wednesday", "availableTimes": [18, 19] },
+        { "day": "Saturday", "availableTimes": [5, 6, 7, 8, 9] }
       ]
     },
     {
-      "day": "Tuesday",
-      "dayLabel": "Martes 06 de Agosto",
-      "times": [
-        {
-          "time": "09:00",
-          "engineers": [
-            { "id": 1, "available": false },
-            { "id": 2, "available": true },
-            { "id": 3, "available": true }
-          ]
-        },
-        {
-          "time": "10:00",
-          "engineers": [
-            { "id": 1, "available": true },
-            { "id": 2, "available": false },
-            { "id": 3, "available": true }
-          ]
-        },
-        {
-          "time": "11:00",
-          "engineers": [
-            { "id": 1, "available": true },
-            { "id": 2, "available": true },
-            { "id": 3, "available": false }
-          ]
-        }
+      "engineer": 2,
+      "availability": [
+        { "day": "Monday", "availableTimes": [20, 21, 22] },
+        { "day": "Thursday", "availableTimes": [18, 19] },
+        { "day": "Sunday", "availableTimes": [10, 11, 12, 13, 14] }
       ]
     },
     {
-      "day": "Wednesday",
-      "dayLabel": "Miercoles 07 de Agosto",
-      "times": [
-        {
-          "time": "09:00",
-          "engineers": [
-            { "id": 1, "available": true },
-            { "id": 2, "available": false },
-            { "id": 3, "available": true }
-          ]
-        },
-        {
-          "time": "10:00",
-          "engineers": [
-            { "id": 1, "available": true },
-            { "id": 2, "available": true },
-            { "id": 3, "available": false }
-          ]
-        },
-        {
-          "time": "11:00",
-          "engineers": [
-            { "id": 1, "available": false },
-            { "id": 2, "available": true },
-            { "id": 3, "available": true }
-          ]
-        }
-      ]
-    },
-    {
-      "day": "Thursday",
-      "dayLabel": "Jueves 08 de Agosto",
-      "times": [
-        {
-          "time": "09:00",
-          "engineers": [
-            { "id": 1, "available": false },
-            { "id": 2, "available": true },
-            { "id": 3, "available": true }
-          ]
-        },
-        {
-          "time": "10:00",
-          "engineers": [
-            { "id": 1, "available": true },
-            { "id": 2, "available": false },
-            { "id": 3, "available": true }
-          ]
-        },
-        {
-          "time": "11:00",
-          "engineers": [
-            { "id": 1, "available": true },
-            { "id": 2, "available": true },
-            { "id": 3, "available": false }
-          ]
-        }
-      ]
-    },
-    {
-      "day": "Friday",
-      "dayLabel": "Viernes 09 de Agosto",
-      "times": [
-        {
-          "time": "09:00",
-          "engineers": [
-            { "id": 1, "available": true },
-            { "id": 2, "available": false },
-            { "id": 3, "available": true }
-          ]
-        },
-        {
-          "time": "10:00",
-          "engineers": [
-            { "id": 1, "available": true },
-            { "id": 2, "available": true },
-            { "id": 3, "available": false }
-          ]
-        },
-        {
-          "time": "11:00",
-          "engineers": [
-            { "id": 1, "available": false },
-            { "id": 2, "available": true },
-            { "id": 3, "available": true }
-          ]
-        }
-      ]
-    },
-    {
-      "day": "Saturday",
-      "dayLabel": "Sabado 10 de Agosto",
-      "times": [
-        {
-          "time": "09:00",
-          "engineers": [
-            { "id": 1, "available": true },
-            { "id": 2, "available": false },
-            { "id": 3, "available": true }
-          ]
-        },
-        {
-          "time": "10:00",
-          "engineers": [
-            { "id": 1, "available": true },
-            { "id": 2, "available": true },
-            { "id": 3, "available": false }
-          ]
-        },
-        {
-          "time": "11:00",
-          "engineers": [
-            { "id": 1, "available": false },
-            { "id": 2, "available": true },
-            { "id": 3, "available": true }
-          ]
-        }
-      ]
-    },
-    {
-      "day": "Sunday",
-      "dayLabel": "Domingo 11 de Agosto",
-      "times": [
-        {
-          "time": "09:00",
-          "engineers": [
-            { "id": 1, "available": false },
-            { "id": 2, "available": true },
-            { "id": 3, "available": true }
-          ]
-        },
-        {
-          "time": "10:00",
-          "engineers": [
-            { "id": 1, "available": true },
-            { "id": 2, "available": false },
-            { "id": 3, "available": true }
-          ]
-        },
-        {
-          "time": "11:00",
-          "engineers": [
-            { "id": 1, "available": true },
-            { "id": 2, "available": true },
-            { "id": 3, "available": false }
-          ]
-        }
+      "engineer": 3,
+      "availability": [
+        { "day": "Tuesday", "availableTimes": [20, 21, 22] },
+        { "day": "Friday", "availableTimes": [20, 21, 22] },
+        { "day": "Sunday", "availableTimes": [15, 16, 17, 18, 19] }
       ]
     }
   ],

@@ -4,7 +4,7 @@ import {
   requestAvailabilities,
   storeAvailabilities,
 } from "@/api/AvailabilityApi";
-import { DayAvailability } from "@/api/types";
+import { EngineerAvailability } from "@/api/types";
 
 jest.mock("@/api/AvailabilityApi");
 
@@ -32,7 +32,12 @@ describe("useAvailabilityManagement", () => {
   });
 
   it("fetches availabilities when service and week are selected", async () => {
-    const mockData: DayAvailability[] = [{ day: "Monday", times: [] }];
+    const mockData: EngineerAvailability[] = [
+      {
+        engineer: 1,
+        availability: [{ day: "Monday", availableTimes: [9] }],
+      },
+    ];
     (requestAvailabilities as jest.Mock).mockResolvedValue(mockData);
 
     selectedService.value = 1;
@@ -60,7 +65,12 @@ describe("useAvailabilityManagement", () => {
     selectedService.value = 1;
     selectedWeek.value = "2024-W32";
 
-    const mockData: DayAvailability[] = [{ day: "Monday", times: [] }];
+    const mockData: EngineerAvailability[] = [
+      {
+        engineer: 1,
+        availability: [{ day: "Monday", availableTimes: [9] }],
+      },
+    ];
     mixin.availabilities.value = mockData;
 
     await mixin.saveAvailability();
@@ -78,7 +88,12 @@ describe("useAvailabilityManagement", () => {
     selectedService.value = 1;
     selectedWeek.value = "2024-W32";
 
-    const mockData: DayAvailability[] = [{ day: "Monday", times: [] }];
+    const mockData: EngineerAvailability[] = [
+      {
+        engineer: 1,
+        availability: [{ day: "Monday", availableTimes: [9] }],
+      },
+    ];
     mixin.availabilities.value = mockData;
 
     await mixin.saveAvailability();
@@ -94,7 +109,12 @@ describe("useAvailabilityManagement", () => {
   });
 
   it("fetches and saves availability on toggle", async () => {
-    const mockData: DayAvailability[] = [{ day: "Monday", times: [] }];
+    const mockData: EngineerAvailability[] = [
+      {
+        engineer: 1,
+        availability: [{ day: "Monday", availableTimes: [9] }],
+      },
+    ];
     (requestAvailabilities as jest.Mock).mockResolvedValue(mockData);
     (storeAvailabilities as jest.Mock).mockResolvedValue(null);
 
