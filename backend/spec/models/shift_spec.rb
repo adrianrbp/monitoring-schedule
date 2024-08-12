@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: shifts
+#
+#  id                 :bigint           not null, primary key
+#  company_service_id :bigint           not null
+#  week               :string
+#  day                :string
+#  start_time         :time
+#  end_time           :time
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  start_hour         :integer
+#  end_hour           :integer
+#
 require 'rails_helper'
 
 RSpec.describe Shift, type: :model do

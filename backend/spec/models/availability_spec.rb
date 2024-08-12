@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: availabilities
+#
+#  id          :bigint           not null, primary key
+#  engineer_id :bigint           not null
+#  week        :string
+#  day         :string
+#  time        :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
 require 'rails_helper'
 
 RSpec.describe Availability, type: :model do

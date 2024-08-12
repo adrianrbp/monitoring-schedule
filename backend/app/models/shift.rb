@@ -10,6 +10,8 @@
 #  end_time           :time
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  start_hour         :integer
+#  end_hour           :integer
 #
 class Shift < ApplicationRecord
   belongs_to :company_service

@@ -8,6 +8,8 @@
 #  contract_end_date   :datetime
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  contract_start_week :string
+#  contract_end_week   :string
 #
 FactoryBot.define do
   factory :company_service do
