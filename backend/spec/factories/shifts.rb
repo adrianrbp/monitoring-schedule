@@ -21,7 +21,7 @@ FactoryBot.define do
     week { "#{Date.today.year}-#{Date.today.cweek}" }
     day { %w[Monday Tuesday Wednesday Thursday Friday Saturday Sunday].sample }
 
-    start_hour { rand(0..23) }
+    start_hour { rand(0..20) }
     end_hour { rand(start_hour + 1..23) }
 
     start_time { Time.now.change(hour: start_hour, min: 0).strftime("%H:%M") }
