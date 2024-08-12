@@ -15,6 +15,7 @@
 #
 class Shift < ApplicationRecord
   belongs_to :company_service
+  has_many :engineer_shifts
 
   validates :start_hour, :end_hour, presence: true
   validates :start_hour, :end_hour, numericality: {
