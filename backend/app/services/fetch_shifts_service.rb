@@ -19,7 +19,8 @@ class FetchShiftsService
   def shifts_by_day
     # "Monday" => [shifts]
     @company_service.shifts
-        .where(week: @company_service.contract_start_week)
+        # .where(week: @company_service.contract_start_week)
+        .where(week: @week)
         .group_by(&:day)
   end
 
@@ -40,21 +41,28 @@ class FetchShiftsService
   def format_time_blocks(shifts)
     shifts.map do |shift|
       {
-        start_time: shift.start_time.strftime("%H:%W"),
-        end_time: shift.end_time.strftime("%H:%W"),
-        amount_of_hours: ((shift.end_time - shift.start_time) / 1.hour).to_i,
-        engineer: nil #format_engineer(shift.engineer)
+        start_time: format_time(shift.start_hour),
+        end_time: format_time(shift.end_hour),
+        amount_of_hours: shift.end_hour - shift.start_hour,
+        engineer: nil # format_engineer(shift.engineer_shifts)
       }
     end
   end
+  def format_time(hour)
+    hour_string = hour.to_s.rjust(2, '0')  # Ensure the hour is two digits
+    "#{hour_string}:00"
+  end
 
-  def format_engineer(engineer)
-    return nil unless engineer.present?
+  def format_engineer(engineer_shifts)
+    return nil unless engineer_shifts.present?
 
-    {
-      id: engineer.id,
-      name: engineer.name,
-      color: engineer.color
-    }
+    engineer_shifts.map do |engineer_shift|
+      engineer = engineer_shift.engineer
+      {
+        id: engineer.id,
+        name: engineer.name,
+        color: engineer.color
+      }
+    end
   end
 end
