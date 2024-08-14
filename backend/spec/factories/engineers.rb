@@ -19,5 +19,36 @@ FactoryBot.define do
       b = rand(200..255)
       "#%02x%02x%02x" % [r, g, b]
     end
+
+    trait :with_service do
+      transient do
+        company_service { nil }
+      end
+
+      after(:create) do |engineer, evaluator|
+        if evaluator.company_service
+          create(:company_service_engineer, company_service: evaluator.company_service, engineer: engineer)
+        end
+      end
+    end
+
+    trait :with_service_and_availabilities do
+      transient do
+        company_service { nil }
+        week { nil }
+        availabilities { {} }
+      end
+
+      after(:create) do |engineer, evaluator|
+        create(:company_service_engineer, company_service: evaluator.company_service, engineer: engineer)
+
+        evaluator.availabilities.each do |day, times|
+          times.each do |time|
+            create(:availability, engineer: engineer, day: day, time: time, week: evaluator.week)
+          end
+        end
+      end
+    end
+
   end
 end
