@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: company_service_engineers
+#
+#  id                 :bigint           not null, primary key
+#  company_service_id :bigint           not null
+#  engineer_id        :bigint           not null
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
 require 'rails_helper'
 
 RSpec.describe CompanyServiceEngineer, type: :model do

@@ -11,4 +11,7 @@
 class Engineer < ApplicationRecord
   has_many :company_service_engineers, dependent: :destroy
   has_many :company_services, through: :company_service_engineers
+  has_many :availabilities, dependent: :destroy
+  has_many :engineer_shifts
+  has_many :shifts, through: :engineer_shifts
 end

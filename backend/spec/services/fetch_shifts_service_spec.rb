@@ -1,17 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe FetchShiftsService, type: :service do
+  let(:week) { "2024-32" }
   let(:company_service) { create(:company_service,
-      contract_start_date: Date.parse('2024-08-05'),
-      contract_end_date: Date.parse('2024-08-11')) }
-  let(:week) { company_service.contract_start_week }
+      contract_start_week: week,
+      contract_end_week: week) }
   let(:service) { FetchShiftsService.new(company_service.id, week) }
 
   describe '#call' do
     context 'when there are shifts for the week' do
-      let!(:shift1) { create(:shift, company_service: company_service, week: week, day: 'Monday', start_time: '09:00', end_time: '12:00') }
-      let!(:shift2) { create(:shift, company_service: company_service, week: week, day: 'Monday', start_time: '14:00', end_time: '18:00') }
-      let!(:shift3) { create(:shift, company_service: company_service, week: week, day: 'Tuesday', start_time: '09:00', end_time: '11:00') }
+      let!(:shift1) { create(:shift, company_service: company_service, week: week,
+          day: 'Monday', start_hour: 9, end_hour: 12) }
+      let!(:shift2) { create(:shift, company_service: company_service, week: week,
+          day: 'Monday', start_hour: 14, end_hour: 18) }
+      let!(:shift3) { create(:shift, company_service: company_service, week: week,
+          day: 'Tuesday', start_hour: 9, end_hour: 11) }
 
       it 'returns formatted shift data grouped by day' do
         result = service.call

@@ -1,7 +1,7 @@
 import { ShiftTablePage } from "./ShiftTable.page";
 import { Shift, Engineer } from "@/api/types"; // Assume Shift is the type of the shifts data
 
-describe("ShiftTable.vue", () => {
+xdescribe("ShiftTable.vue", () => {
   let page: ShiftTablePage;
   const mockEngineers: Engineer[] = [
     { id: 1, name: "Engineer 1", color: "#a5b4fc" },

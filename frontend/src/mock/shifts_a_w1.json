@@ -5,9 +5,9 @@
       "dayLabel": "Lunes 05 de Agosto",
       "time_blocks": [
         {
-          "start_time": "09:00",
-          "end_time": "10:00",
-          "amount_of_hours": 1,
+          "start_time": "18:00",
+          "end_time": "20:00",
+          "amount_of_hours": 2,
           "engineer": {
             "id": 1,
             "name": "Engineer 1",
@@ -15,9 +15,9 @@
           }
         },
         {
-          "start_time": "10:00",
-          "end_time": "11:00",
-          "amount_of_hours": 1,
+          "start_time": "20:00",
+          "end_time": "23:00",
+          "amount_of_hours": 3,
           "engineer": {
             "id": 2,
             "name": "Engineer 2",
@@ -31,15 +31,15 @@
       "dayLabel": "Martes 06 de Agosto",
       "time_blocks": [
         {
-          "start_time": "09:00",
-          "end_time": "10:00",
-          "amount_of_hours": 1,
+          "start_time": "18:00",
+          "end_time": "20:00",
+          "amount_of_hours": 2,
           "engineer": null
         },
         {
-          "start_time": "10:00",
-          "end_time": "11:00",
-          "amount_of_hours": 1,
+          "start_time": "20:00",
+          "end_time": "23:00",
+          "amount_of_hours": 3,
           "engineer": {
             "id": 3,
             "name": "Engineer 3",
@@ -53,9 +53,9 @@
       "dayLabel": "Miercoles 07 de Agosto",
       "time_blocks": [
         {
-          "start_time": "09:00",
-          "end_time": "10:00",
-          "amount_of_hours": 1,
+          "start_time": "18:00",
+          "end_time": "20:00",
+          "amount_of_hours": 2,
           "engineer": {
             "id": 1,
             "name": "Engineer 1",
@@ -63,9 +63,9 @@
           }
         },
         {
-          "start_time": "10:00",
-          "end_time": "11:00",
-          "amount_of_hours": 1,
+          "start_time": "20:00",
+          "end_time": "23:00",
+          "amount_of_hours": 3,
           "engineer": null
         }
       ]
@@ -75,9 +75,9 @@
       "dayLabel": "Jueves 08 de Agosto",
       "time_blocks": [
         {
-          "start_time": "09:00",
-          "end_time": "10:00",
-          "amount_of_hours": 1,
+          "start_time": "18:00",
+          "end_time": "20:00",
+          "amount_of_hours": 2,
           "engineer": {
             "id": 2,
             "name": "Engineer 2",
@@ -85,9 +85,9 @@
           }
         },
         {
-          "start_time": "10:00",
-          "end_time": "11:00",
-          "amount_of_hours": 1,
+          "start_time": "20:00",
+          "end_time": "23:00",
+          "amount_of_hours": 3,
           "engineer": null
         }
       ]
@@ -97,15 +97,15 @@
       "dayLabel": "Viernes 09 de Agosto",
       "time_blocks": [
         {
-          "start_time": "09:00",
-          "end_time": "10:00",
-          "amount_of_hours": 1,
+          "start_time": "18:00",
+          "end_time": "20:00",
+          "amount_of_hours": 2,
           "engineer": null
         },
         {
-          "start_time": "10:00",
-          "end_time": "11:00",
-          "amount_of_hours": 1,
+          "start_time": "20:00",
+          "end_time": "23:00",
+          "amount_of_hours": 3,
           "engineer": {
             "id": 3,
             "name": "Engineer 3",
@@ -119,9 +119,9 @@
       "dayLabel": "Sabado 10 de Agosto",
       "time_blocks": [
         {
-          "start_time": "09:00",
+          "start_time": "05:00",
           "end_time": "10:00",
-          "amount_of_hours": 1,
+          "amount_of_hours": 5,
           "engineer": {
             "id": 1,
             "name": "Engineer 1",
@@ -130,8 +130,14 @@
         },
         {
           "start_time": "10:00",
-          "end_time": "11:00",
-          "amount_of_hours": 1,
+          "end_time": "15:00",
+          "amount_of_hours": 5,
+          "engineer": null
+        },
+        {
+          "start_time": "15:00",
+          "end_time": "20:00",
+          "amount_of_hours": 5,
           "engineer": null
         }
       ]
@@ -141,18 +147,28 @@
       "dayLabel": "Domingo 11 de Agosto",
       "time_blocks": [
         {
-          "start_time": "09:00",
+          "start_time": "05:00",
           "end_time": "10:00",
-          "amount_of_hours": 1,
+          "amount_of_hours": 5,
           "engineer": null
         },
         {
           "start_time": "10:00",
-          "end_time": "11:00",
-          "amount_of_hours": 1,
+          "end_time": "15:00",
+          "amount_of_hours": 5,
           "engineer": {
             "id": 2,
             "name": "Engineer 2",
+            "color": "#5eead4"
+          }
+        },
+        {
+          "start_time": "15:00",
+          "end_time": "20:00",
+          "amount_of_hours": 5,
+          "engineer": {
+            "id": 3,
+            "name": "Engineer 3",
             "color": "#5eead4"
           }
         }

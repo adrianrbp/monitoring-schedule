@@ -8,6 +8,8 @@
 #  contract_end_date   :datetime
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  contract_start_week :string
+#  contract_end_week   :string
 #
 class CompanyService < ApplicationRecord
   has_many :company_service_engineers, dependent: :destroy

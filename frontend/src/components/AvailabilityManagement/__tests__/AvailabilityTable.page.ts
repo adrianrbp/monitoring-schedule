@@ -1,14 +1,14 @@
 import { mount, VueWrapper } from "@vue/test-utils";
 import { nextTick, Ref, ref } from "vue";
 import AvailabilityTable from "../AvailabilityTable.vue";
-import { DayAvailability, Engineer } from "@/api/types";
+import { EngineerAvailability, Engineer } from "@/api/types";
 
 export class AvailabilityTablePage {
   private wrapper: VueWrapper;
   public shiftManagementEngineers: Ref<Engineer[]>;
-  public availabilities: Ref<DayAvailability[]>;
+  public availabilities: Ref<EngineerAvailability[]>;
 
-  constructor(engineers: Engineer[], availabilities: DayAvailability[]) {
+  constructor(engineers: Engineer[], availabilities: EngineerAvailability[]) {
     this.shiftManagementEngineers = ref(engineers);
     this.availabilities = ref(availabilities);
 

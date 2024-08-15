@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   resources :company_services, only: [:index], constraints: { format: 'json' } do
     resources :weeks, only: [:index]
-    resources :engineers, only: [:index], module: :company_services
+    resources :engineers, only: [:index], module: :company_services do
+      collection do
+        get 'availability', to: 'engineers#availability'
+      end
+    end
     resources :shifts, only: [:index], module: :company_services
   end
 

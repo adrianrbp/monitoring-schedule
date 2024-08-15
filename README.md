@@ -70,35 +70,53 @@
 1. CompanyService
   id: 1
   name: "Service A"
-	contract_start_date: "2024-08-01"
-  contract_end_date: "2024-08-31"
+  contract_start_week: "2024-30"
+	contract_start_date: "2024-07-22"
+  contract_end_week: "2024-34"
+  contract_end_date: "2024-08-25"
 
 2. Engineer
   id: 1
   name:"Alice Smith"
   color:"Bob Johnson"
 
-3. Shift
+3. CompanyServiceEngineer
+	company_service:1
+  engineer: 1
+
+4. Shift
 	company_service:1
   engineer:(sin asignar)
 	week:"2024-32"
   day:"Monday"
-  start_time:"2024-08-07 09:00:00"
-  end_time:"2024-08-07 10:00:00"
+  start_hour: 15
+  end_hour: 20
+  start_time:"15:00"
+  end_time:"20:00"
   
-4. Availability
+5. Availability
+  id: 1
 	engineer:1
   week:"2024-32"
   day:"Monday"
-  start_time:"2024-08-07 09:00:00"
-  end_time:"2024-08-07 10:00:00"
-  available:true
+  time:17
+
+6. EngineerShift
+  shift: 1
+  availability: 1
+  start_hour: 17
+  end_hour: 18
+
 
 #### Modelos - Instancias Factory Bot
 ```ruby
 # 1. CompanyService
 FactoryBot.attributes_for :company_service
-=> {:name=>"Farrell, Mohr and Haley", :contract_start_date=>Thu, 18 Jul 2024, :contract_end_date=>Tue, 20 Aug 2024}
+=> {:name=>"Ward and Sons",
+ :contract_start_week=>"2024-30",
+ :contract_start_date=>Mon, 22 Jul 2024,
+ :contract_end_week=>"2024-34",
+ :contract_end_date=>Sun, 25 Aug 2024}
 
 # 2. Engineer
 FactoryBot.attributes_for :engineer
@@ -109,12 +127,15 @@ FactoryBot.attributes_for :engineer
 
 # 4. Shift
 FactoryBot.attributes_for :shift
-=> {:week=>"2024-32", :day=>"Tuesday", :start_time=>"13:00", :end_time=>"18:00"}
-# 5. EngineerShift
+=> {:week=>"2024-33", :day=>"Friday", :start_hour=>19, :end_hour=>23, :start_time=>"19:00", :end_time=>"23:00"}
 
-# 6. Availability
+# 5. Availability
 FactoryBot.attributes_for :availability
+=> {:week=>"2024-33", :day=>"Friday", :time=>17}
 
+# 6. EngineerShift (Assigned Engineers)
+FactoryBot.attributes_for :engineer_shift
+=> {:start_hour=>20, :end_hour=>22}
 ```
 
 #### Arquitectura Frontend (Grafica Figma)
@@ -123,6 +144,19 @@ FactoryBot.attributes_for :availability
     - provider: useShiftManagement
       - CompanyServiceApi.ts
 #### Arquitectura Backend (Grafica Figma)
+Services:
+1. GET /shifts - List all shifts (EngineerShifts-assigned) [Shift+EngineerShifts]
+  - FetchShiftsService
+2. GET /availability - List all availabilities (Availability)
+  - EngineerAvailabilityService
+3. POST /availability - Assign Engineers to Shifts
+  - EngineerAvailabilityService [Update Availability + Create EngineerShifts]
+    - ShiftAssignmentService
+
+### Assignment Algorithm
+1. Asignación inicial: horarios donde solo un ingeniero está disponible
+2. Asignación optimizada: horarios con múltiples ingenieros disponibles
+3. Ajuste final para balancear las horas a lo largo de la semana
 
 
 ### Ejecución

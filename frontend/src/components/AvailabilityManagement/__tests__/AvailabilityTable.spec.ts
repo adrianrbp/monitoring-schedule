@@ -1,10 +1,10 @@
 import { AvailabilityTablePage } from "./AvailabilityTable.page";
-import { Engineer, DayAvailability } from "@/api/types";
+import { Engineer, EngineerAvailability } from "@/api/types";
 
 describe("AvailabilityTable.vue", () => {
   let page: AvailabilityTablePage;
   let providerEngineersMock: Engineer[];
-  let providerAvailabilitiesMock: DayAvailability[];
+  let providerAvailabilitiesMock: EngineerAvailability[];
 
   beforeEach(() => {
     providerEngineersMock = [
@@ -15,17 +15,18 @@ describe("AvailabilityTable.vue", () => {
 
     providerAvailabilitiesMock = [
       {
-        day: "Monday",
-        times: [
-          {
-            time: "09:00",
-            engineers: [
-              { id: 1, available: true },
-              { id: 2, available: false },
-              { id: 3, available: true },
-            ],
-          },
+        engineer: 1,
+        availability: [{ day: "Monday", availableTimes: [9] }],
+      },
+      {
+        engineer: 2,
+        availability: [
+          { day: "Monday", availableTimes: [] }, // Engineer 2 is not available at 09:00 on Monday
         ],
+      },
+      {
+        engineer: 3,
+        availability: [{ day: "Monday", availableTimes: [9] }],
       },
     ];
 
@@ -48,18 +49,18 @@ describe("AvailabilityTable.vue", () => {
     // Initially, the first engineer is available
     expect(page.isCheckboxChecked(0)).toBe(true);
 
-    // Toggle availability
+    // Toggle availability: Engineer not Available
     await page.toggleCheckbox(0);
     expect(page.isCheckboxChecked(0)).toBe(false);
-    expect(page.availabilities.value[0].times[0].engineers[0].available).toBe(
-      false
+    expect(page.availabilities.value[0].availability[0].availableTimes).toEqual(
+      []
     );
 
-    // Toggle back
+    // Toggle back: Engineer Available
     await page.toggleCheckbox(0);
     expect(page.isCheckboxChecked(0)).toBe(true);
-    expect(page.availabilities.value[0].times[0].engineers[0].available).toBe(
-      true
+    expect(page.availabilities.value[0].availability[0].availableTimes).toEqual(
+      [9]
     );
   });
 });

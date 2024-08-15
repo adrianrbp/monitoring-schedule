@@ -71,29 +71,40 @@ export interface EngineersResponse {
   statusText: string;
 }
 
-export interface EngineerAvailability {
-  id: number;
-  available: boolean;
-}
+// Availability
+// export interface EngineerAvailability {
+//   id: number;
+//   available: boolean;
+// }
 
-export interface TimeBlockAv {
-  time: string;
-  engineers: EngineerAvailability[];
-}
+// export interface TimeBlockAv {
+//   time: string;
+//   engineers: EngineerAvailability[];
+// }
+
+// export interface DayAvailability {
+//   day: string;
+//   dayLabel?: string;
+//   times: TimeBlockAv[];
+// }
 
 export interface DayAvailability {
-  day: string;
-  dayLabel?: string;
-  times: TimeBlockAv[];
+  day: string; // E.g., "Monday"
+  availableTimes: number[]; // Array of hours (e.g., [9, 10, 11])
 }
 
-export interface AvailabilityResponse {
+export interface EngineerAvailability {
+  engineer: number; // Engineer ID
   availability: DayAvailability[];
+}
+export interface AvailabilityResponse {
+  availability: EngineerAvailability[];
   status: number;
   statusText: string;
 }
 
+// Availability Update Payload
 export interface AvailabilityPayload {
   week: string;
-  availability: DayAvailability[];
+  availability: EngineerAvailability[];
 }

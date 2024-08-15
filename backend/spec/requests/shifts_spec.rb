@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "CompanyServices::Shifts", type: :request do
-  let!(:company_service) { create(:company_service,
-      contract_start_date: Date.parse('2024-08-05'),
-      contract_end_date: Date.parse('2024-08-11')) }
-  let(:week) { company_service.contract_start_week }
+  let(:week) { "2024-32" }
+  let(:company_service) { create(:company_service,
+      contract_start_week: week,
+      contract_end_week: week) }
 
   let(:valid_headers) {
     {"Content-Type" => "application/json"}

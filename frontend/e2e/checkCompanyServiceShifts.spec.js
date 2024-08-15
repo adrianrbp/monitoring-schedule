@@ -45,8 +45,8 @@ test.describe("Check Company Service Shifts", () => {
     }
 
     const timeBlocks = [
-      { start: "09:00", end: "10:00", engineer: "Engineer 1" },
-      { start: "10:00", end: "11:00", engineer: "Engineer 2" },
+      { start: "18:00", end: "19:00", engineer: "Engineer 1" },
+      { start: "20:00", end: "21:00", engineer: "Engineer 2" },
     ];
 
     // Check if time blocks and engineers are rendered correctly for a specific day
@@ -68,12 +68,12 @@ test.describe("Check Company Service Shifts", () => {
 
     // Check for an unassigned time block
     const unassignedTimeBlock = page.locator(
-      '[aria-label="Time block Martes 06 de Agosto 09:00"]'
+      '[aria-label="Time block Martes 06 de Agosto 18:00"]'
     );
     await expect(unassignedTimeBlock).toBeVisible();
     await expect(
-      unassignedTimeBlock.locator('[aria-label="Hour 09:00"]')
-    ).toHaveText("09:00 - 10:00");
+      unassignedTimeBlock.locator('[aria-label="Hour 18:00"]')
+    ).toHaveText("18:00 - 19:00");
     await expect(
       unassignedTimeBlock.locator('[aria-label="Assigned Engineer ⚠"]')
     ).toHaveText("⚠");

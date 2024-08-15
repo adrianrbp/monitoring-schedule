@@ -25,12 +25,12 @@ test.describe("Shift and Availability Table", () => {
 
     // Check the rendering of checkboxes
     await expect(
-      page.locator('[aria-label="Availability Monday 09:00 Engineer 1"]')
+      page.locator('[aria-label="Availability Monday 18:00 Engineer 1"]')
     ).toBeVisible();
 
     // Check some checkboxes
-    await page.check('[aria-label="Availability Monday 09:00 Engineer 1"]');
-    await page.check('[aria-label="Availability Monday 10:00 Engineer 2"]');
+    await page.check('[aria-label="Availability Monday 18:00 Engineer 1"]');
+    await page.check('[aria-label="Availability Monday 19:00 Engineer 2"]');
 
     // Save availability
     await page.click('button:has-text("Ver Turnos")');

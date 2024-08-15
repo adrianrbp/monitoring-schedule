@@ -10,7 +10,18 @@
 #  end_time           :time
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  start_hour         :integer
+#  end_hour           :integer
 #
 class Shift < ApplicationRecord
   belongs_to :company_service
+  has_many :engineer_shifts
+  has_many :engineers, through: :engineer_shifts
+
+  validates :start_hour, :end_hour, presence: true
+  validates :start_hour, :end_hour, numericality: {
+    only_integer: true,
+    greater_than_or_equal_to: 0,
+    less_than_or_equal_to: 23
+  }
 end
